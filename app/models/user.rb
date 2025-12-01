@@ -66,6 +66,8 @@ class User < ApplicationRecord
   validates :phone, uniqueness: true, allow_nil: true
   validates :first_name, :last_name, presence: true
   validates :user_type, presence: true
+  validates :preferred_language, inclusion: { in: %w[English Spanish French German Italian] }, allow_nil: true
+  validates :payment_method, inclusion: { in: %w[credit_card digital_wallet] }, allow_nil: true
 
   # Callbacks
   before_save :update_last_active_at, if: :will_save_change_to_updated_at?
@@ -75,6 +77,11 @@ class User < ApplicationRecord
   scope :taskers, -> { where(user_type: ['tasker', 'both']) }
   scope :verified, -> { where(id_verified: true) }
   scope :active_users, -> { where(status: 'active') }
+
+  # Methods
+  def default_address
+    addresses.find_by(is_default: true)
+  end
 
   private
 

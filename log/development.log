@@ -1,0 +1,940 @@
+Started POST "/users" for ::1 at 2025-11-29 21:06:57 +0200
+  
+ActiveRecord::NoDatabaseError (We could not find your database: handify_development. Available database configurations can be found in config/database.yml.
+
+To resolve this error:
+
+- Did you not create the database, or did you delete it? To create the database, run:
+
+    bin/rails db:create
+
+- Has the database name changed? Verify that config/database.yml contains the correct database name.
+)
+Caused by: PG::ConnectionBad (connection to server on socket "/tmp/.s.PGSQL.5432" failed: FATAL:  database "handify_development" does not exist
+)
+
+Information for: ActiveRecord::NoDatabaseError (We could not find your database: handify_development. Available database configurations can be found in config/database.yml.
+
+To resolve this error:
+
+- Did you not create the database, or did you delete it? To create the database, run:
+
+    bin/rails db:create
+
+- Has the database name changed? Verify that config/database.yml contains the correct database name.
+):
+  
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:63:in `rescue in new_client'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:57:in `new_client'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:939:in `connect'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:951:in `reconnect'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:669:in `block in reconnect!'
+activesupport (8.0.4) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:668:in `reconnect!'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:773:in `block in verify!'
+activesupport (8.0.4) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:763:in `verify!'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:781:in `connect!'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:987:in `block in with_raw_connection'
+activesupport (8.0.4) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:986:in `with_raw_connection'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in `quote_string'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract/quoting.rb:76:in `quote'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in `quote'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1142:in `quoted_scope'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1119:in `data_source_sql'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract/schema_statements.rb:60:in `table_exists?'
+activerecord (8.0.4) lib/active_record/schema_migration.rb:55:in `block in create_table'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:422:in `with_connection'
+activerecord (8.0.4) lib/active_record/schema_migration.rb:54:in `create_table'
+activerecord (8.0.4) lib/active_record/migration.rb:1430:in `initialize'
+activerecord (8.0.4) lib/active_record/migration.rb:1278:in `new'
+activerecord (8.0.4) lib/active_record/migration.rb:1278:in `open'
+activerecord (8.0.4) lib/active_record/migration.rb:762:in `block (2 levels) in pending_migrations'
+activerecord (8.0.4) lib/active_record/migration/pending_migration_connection.rb:8:in `with_temporary_pool'
+activerecord (8.0.4) lib/active_record/migration.rb:761:in `block in pending_migrations'
+activerecord (8.0.4) lib/active_record/migration.rb:760:in `each'
+activerecord (8.0.4) lib/active_record/migration.rb:760:in `pending_migrations'
+activerecord (8.0.4) lib/active_record/migration.rb:739:in `check_pending_migrations'
+activerecord (8.0.4) lib/active_record/migration.rb:659:in `block (2 levels) in call'
+activesupport (8.0.4) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (8.0.4) lib/active_record/migration.rb:664:in `block in call'
+activerecord (8.0.4) lib/active_record/migration.rb:656:in `synchronize'
+activerecord (8.0.4) lib/active_record/migration.rb:656:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.4) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.4) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.4) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.4) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.4) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.4) lib/rack/sendfile.rb:131:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (8.0.4) lib/rails/engine.rb:535:in `call'
+puma (7.1.0) lib/puma/configuration.rb:300:in `call'
+puma (7.1.0) lib/puma/request.rb:101:in `block in handle_request'
+puma (7.1.0) lib/puma/thread_pool.rb:355:in `with_force_shutdown'
+puma (7.1.0) lib/puma/request.rb:100:in `handle_request'
+puma (7.1.0) lib/puma/server.rb:503:in `process_client'
+puma (7.1.0) lib/puma/server.rb:262:in `block in run'
+puma (7.1.0) lib/puma/thread_pool.rb:182:in `block in spawn_thread'
+
+Information for cause: PG::ConnectionBad (connection to server on socket "/tmp/.s.PGSQL.5432" failed: FATAL:  database "handify_development" does not exist
+):
+  
+pg-1.6.2-x86_64 (darwin) lib/pg/connection.rb:751:in `polling_loop'
+pg-1.6.2-x86_64 (darwin) lib/pg/connection.rb:795:in `async_connect_or_reset'
+pg-1.6.2-x86_64 (darwin) lib/pg/connection.rb:951:in `connect_to_hosts'
+pg-1.6.2-x86_64 (darwin) lib/pg/connection.rb:871:in `new'
+pg-1.6.2-x86_64 (darwin) lib/pg.rb:88:in `connect'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:58:in `new_client'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:939:in `connect'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:951:in `reconnect'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:669:in `block in reconnect!'
+activesupport (8.0.4) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:668:in `reconnect!'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:773:in `block in verify!'
+activesupport (8.0.4) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:763:in `verify!'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:781:in `connect!'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:987:in `block in with_raw_connection'
+activesupport (8.0.4) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract_adapter.rb:986:in `with_raw_connection'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in `quote_string'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract/quoting.rb:76:in `quote'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in `quote'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1142:in `quoted_scope'
+activerecord (8.0.4) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1119:in `data_source_sql'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract/schema_statements.rb:60:in `table_exists?'
+activerecord (8.0.4) lib/active_record/schema_migration.rb:55:in `block in create_table'
+activerecord (8.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:422:in `with_connection'
+activerecord (8.0.4) lib/active_record/schema_migration.rb:54:in `create_table'
+activerecord (8.0.4) lib/active_record/migration.rb:1430:in `initialize'
+activerecord (8.0.4) lib/active_record/migration.rb:1278:in `new'
+activerecord (8.0.4) lib/active_record/migration.rb:1278:in `open'
+activerecord (8.0.4) lib/active_record/migration.rb:762:in `block (2 levels) in pending_migrations'
+activerecord (8.0.4) lib/active_record/migration/pending_migration_connection.rb:8:in `with_temporary_pool'
+activerecord (8.0.4) lib/active_record/migration.rb:761:in `block in pending_migrations'
+activerecord (8.0.4) lib/active_record/migration.rb:760:in `each'
+activerecord (8.0.4) lib/active_record/migration.rb:760:in `pending_migrations'
+activerecord (8.0.4) lib/active_record/migration.rb:739:in `check_pending_migrations'
+activerecord (8.0.4) lib/active_record/migration.rb:659:in `block (2 levels) in call'
+activesupport (8.0.4) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (8.0.4) lib/active_record/migration.rb:664:in `block in call'
+activerecord (8.0.4) lib/active_record/migration.rb:656:in `synchronize'
+activerecord (8.0.4) lib/active_record/migration.rb:656:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.4) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.4) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.4) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.4) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.4) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.4) lib/rack/sendfile.rb:131:in `call'
+actionpack (8.0.4) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (8.0.4) lib/rails/engine.rb:535:in `call'
+puma (7.1.0) lib/puma/configuration.rb:300:in `call'
+puma (7.1.0) lib/puma/request.rb:101:in `block in handle_request'
+puma (7.1.0) lib/puma/thread_pool.rb:355:in `with_force_shutdown'
+puma (7.1.0) lib/puma/request.rb:100:in `handle_request'
+puma (7.1.0) lib/puma/server.rb:503:in `process_client'
+puma (7.1.0) lib/puma/server.rb:262:in `block in run'
+puma (7.1.0) lib/puma/thread_pool.rb:182:in `block in spawn_thread'
+  [1m[35mSQL (0.4ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (810.9ms)[0m  [1m[35mCREATE DATABASE "handify_development" ENCODING = 'unicode' /*application='HandifyRails'*/[0m
+  [1m[35mSQL (16.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog /*application='HandifyRails'*/[0m
+  [1m[35mSQL (447.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "pgcrypto" /*application='HandifyRails'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "addresses" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (35.6ms)[0m  [1m[35mCREATE TABLE "addresses" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "label" character varying(50), "street_address" character varying NOT NULL, "city" character varying(100) NOT NULL, "county" character varying(100), "postal_code" character varying(20), "country" character varying(2) DEFAULT 'RO', "latitude" decimal(10,8), "longitude" decimal(11,8), "is_default" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_addresses_on_user_id" ON "addresses" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "admin_users" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "admin_users" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "role" character varying NOT NULL, "permissions" jsonb, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admin_users_on_user_id" ON "admin_users" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "audit_logs" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "audit_logs" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid, "admin_id" uuid, "action_type" character varying NOT NULL, "table_name" character varying(100), "record_id" uuid, "ip_address" character varying(45), "user_agent" text, "changes" jsonb, "reason" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_audit_logs_on_admin_id" ON "audit_logs" ("admin_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_audit_logs_on_user_id" ON "audit_logs" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "bids" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "bids" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "task_id" uuid NOT NULL, "tasker_id" uuid NOT NULL, "amount" decimal(10,2) NOT NULL, "estimated_hours" decimal(4,2), "proposed_date" date, "proposed_time" time, "message" text, "status" character varying DEFAULT 'pending', "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_bids_on_task_id_and_tasker_id" ON "bids" ("task_id", "tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE INDEX "index_bids_on_task_id" ON "bids" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE INDEX "index_bids_on_tasker_id" ON "bids" ("tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "categories" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "categories" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "name" character varying(100) NOT NULL, "slug" character varying(100) NOT NULL, "description" text, "icon_url" character varying(500), "parent_id" uuid, "suggested_hourly_rate" decimal(10,2), "is_active" boolean DEFAULT TRUE, "sort_order" integer DEFAULT 0, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE INDEX "index_categories_on_parent_id" ON "categories" ("parent_id") /*application='HandifyRails'*/[0m
+  [1m[35m (9.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_categories_on_slug" ON "categories" ("slug") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "data_breach_logs" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (20.5ms)[0m  [1m[35mCREATE TABLE "data_breach_logs" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "breach_type" character varying NOT NULL, "severity" character varying NOT NULL, "affected_users_count" integer, "affected_data_types" jsonb, "description" text NOT NULL, "discovered_at" timestamp(6) NOT NULL, "reported_to_authority_at" timestamp(6), "users_notified_at" timestamp(6), "mitigation_actions" text, "status" character varying DEFAULT 'discovered', "resolved_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "data_deletion_requests" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "data_deletion_requests" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "request_type" character varying NOT NULL, "status" character varying DEFAULT 'pending', "requested_at" timestamp(6) DEFAULT CURRENT_TIMESTAMP, "completed_at" timestamp(6), "export_file_url" character varying(500), "rejection_reason" text, "notes" text, "processed_by_id" uuid, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE INDEX "index_data_deletion_requests_on_processed_by_id" ON "data_deletion_requests" ("processed_by_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_data_deletion_requests_on_user_id" ON "data_deletion_requests" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "data_processing_agreements" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "data_processing_agreements" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "processor_name" character varying(200) NOT NULL, "processor_type" character varying NOT NULL, "dpa_url" character varying(500), "privacy_policy_url" character varying(500), "data_transferred" jsonb, "is_active" boolean DEFAULT TRUE, "signed_at" timestamp(6), "expires_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "direct_requests" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "direct_requests" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "customer_id" uuid NOT NULL, "tasker_id" uuid NOT NULL, "category_id" uuid NOT NULL, "title" character varying(200) NOT NULL, "description" text NOT NULL, "address_id" uuid NOT NULL, "preferred_date" date, "preferred_time" time, "estimated_hours" decimal(4,2), "proposed_amount" decimal(10,2), "status" character varying DEFAULT 'pending', "tasker_counter_amount" decimal(10,2), "tasker_message" text, "task_id" uuid, "expires_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_direct_requests_on_address_id" ON "direct_requests" ("address_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_direct_requests_on_category_id" ON "direct_requests" ("category_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE INDEX "index_direct_requests_on_customer_id" ON "direct_requests" ("customer_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_direct_requests_on_task_id" ON "direct_requests" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE INDEX "index_direct_requests_on_tasker_id" ON "direct_requests" ("tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "disputes" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (19.9ms)[0m  [1m[35mCREATE TABLE "disputes" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "task_id" uuid NOT NULL, "raised_by_id" uuid NOT NULL, "reason" text NOT NULL, "status" character varying DEFAULT 'open', "resolution" text, "resolved_by_id" uuid, "resolved_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_disputes_on_raised_by_id" ON "disputes" ("raised_by_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_disputes_on_resolved_by_id" ON "disputes" ("resolved_by_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_disputes_on_task_id" ON "disputes" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "encryption_keys" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "encryption_keys" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "key_name" character varying(100) NOT NULL, "key_version" integer DEFAULT 1 NOT NULL, "algorithm" character varying(50) NOT NULL, "is_active" boolean DEFAULT TRUE, "rotated_at" timestamp(6), "expires_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_encryption_keys_on_key_name" ON "encryption_keys" ("key_name") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "customer_id" uuid NOT NULL, "tasker_id" uuid NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_favorites_on_customer_id_and_tasker_id" ON "favorites" ("customer_id", "tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_favorites_on_customer_id" ON "favorites" ("customer_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_favorites_on_tasker_id" ON "favorites" ("tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "gdpr_consents" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "gdpr_consents" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "consent_type" character varying NOT NULL, "version" character varying(20) NOT NULL, "consented" boolean NOT NULL, "consented_at" timestamp(6), "ip_address" character varying(45), "user_agent" text, "withdrawn_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_gdpr_consents_on_user_consent_version" ON "gdpr_consents" ("user_id", "consent_type", "version") /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_gdpr_consents_on_user_id" ON "gdpr_consents" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "jwt_denylist" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (20.8ms)[0m  [1m[35mCREATE TABLE "jwt_denylist" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "jti" character varying NOT NULL, "exp" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE INDEX "index_jwt_denylist_on_jti" ON "jwt_denylist" ("jti") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "messages" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "messages" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "task_id" uuid, "direct_request_id" uuid, "sender_id" uuid NOT NULL, "receiver_id" uuid NOT NULL, "message" text NOT NULL, "is_read" boolean DEFAULT FALSE, "read_at" timestamp(6), "attachment_url" character varying(500), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE INDEX "index_messages_on_direct_request_id" ON "messages" ("direct_request_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE INDEX "index_messages_on_receiver_id" ON "messages" ("receiver_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE INDEX "index_messages_on_sender_id" ON "messages" ("sender_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_messages_on_task_id" ON "messages" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "notifications" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "notifications" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "type" character varying NOT NULL, "title" character varying(200) NOT NULL, "message" text NOT NULL, "related_id" uuid, "is_read" boolean DEFAULT FALSE, "read_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (17.9ms)[0m  [1m[35mCREATE INDEX "index_notifications_on_user_id" ON "notifications" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "portfolio_items" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "portfolio_items" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "tasker_id" uuid NOT NULL, "title" character varying(200) NOT NULL, "description" text, "category_id" uuid, "images" jsonb NOT NULL, "task_id" uuid, "is_featured" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_portfolio_items_on_category_id" ON "portfolio_items" ("category_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_portfolio_items_on_task_id" ON "portfolio_items" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_portfolio_items_on_tasker_id" ON "portfolio_items" ("tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "reviews" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "task_id" uuid NOT NULL, "reviewer_id" uuid NOT NULL, "reviewee_id" uuid NOT NULL, "rating" integer NOT NULL, "comment" text, "review_type" character varying NOT NULL, "tags" jsonb, "is_public" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_reviewee_id" ON "reviews" ("reviewee_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_reviewer_id" ON "reviews" ("reviewer_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_reviews_on_task_id_and_reviewer_id" ON "reviews" ("task_id", "reviewer_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_task_id" ON "reviews" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "tasker_availability" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "tasker_availability" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "tasker_id" uuid NOT NULL, "date" date NOT NULL, "start_time" time NOT NULL, "end_time" time NOT NULL, "is_available" boolean DEFAULT TRUE, "is_booked" boolean DEFAULT FALSE, "task_id" uuid, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (17.0ms)[0m  [1m[35mCREATE INDEX "index_tasker_availability_on_task_id" ON "tasker_availability" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_tasker_availability_unique" ON "tasker_availability" ("tasker_id", "date", "start_time") /*application='HandifyRails'*/[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_tasker_availability_on_tasker_id" ON "tasker_availability" ("tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "tasker_profiles" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "tasker_profiles" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "bio" text, "hourly_rate" decimal(10,2), "allows_instant_booking" boolean DEFAULT FALSE, "instant_booking_buffer_hours" integer DEFAULT 24, "availability" jsonb, "skills" jsonb, "experience_years" integer, "background_check_status" character varying DEFAULT 'pending', "background_check_date" timestamp(6), "insurance_verified" boolean DEFAULT FALSE, "avg_rating" decimal(3,2) DEFAULT 0.0, "total_tasks_completed" integer DEFAULT 0, "total_earnings" decimal(12,2) DEFAULT 0.0, "response_rate" decimal(5,2) DEFAULT 0.0, "response_time_hours" decimal(6,2), "stripe_account_id" character varying, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_tasker_profiles_on_user_id" ON "tasker_profiles" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "tasks" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "customer_id" uuid NOT NULL, "category_id" uuid NOT NULL, "title" character varying(200) NOT NULL, "description" text NOT NULL, "address_id" uuid NOT NULL, "task_date" date, "task_time" time, "is_flexible_timing" boolean DEFAULT FALSE, "estimated_hours" decimal(4,2), "pricing_type" character varying DEFAULT 'bidding' NOT NULL, "budget_min" decimal(10,2), "budget_max" decimal(10,2), "fixed_price" decimal(10,2), "hourly_budget" decimal(10,2), "booking_type" character varying DEFAULT 'open_bidding' NOT NULL, "status" character varying DEFAULT 'open', "urgency" character varying DEFAULT 'medium', "images" jsonb, "requirements" text, "assigned_tasker_id" uuid, "assigned_at" timestamp(6), "completed_at" timestamp(6), "cancelled_at" timestamp(6), "cancellation_reason" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_address_id" ON "tasks" ("address_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_assigned_tasker_id" ON "tasks" ("assigned_tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_category_id" ON "tasks" ("category_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_customer_id" ON "tasks" ("customer_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (24.2ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "task_id" uuid NOT NULL, "customer_id" uuid NOT NULL, "tasker_id" uuid NOT NULL, "amount" decimal(10,2) NOT NULL, "platform_fee" decimal(10,2) NOT NULL, "platform_fee_percentage" decimal(5,2) NOT NULL, "tasker_amount" decimal(10,2) NOT NULL, "stripe_payment_intent_id" character varying, "stripe_transfer_id" character varying, "status" character varying DEFAULT 'pending', "payment_method" character varying DEFAULT 'card', "paid_at" timestamp(6), "released_at" timestamp(6), "refunded_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_transactions_on_customer_id" ON "transactions" ("customer_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_transactions_on_task_id" ON "transactions" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_transactions_on_tasker_id" ON "transactions" ("tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "email" character varying NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "phone" character varying(20), "first_name" character varying(100) NOT NULL, "last_name" character varying(100) NOT NULL, "user_type" character varying DEFAULT 'customer' NOT NULL, "profile_image_url" character varying(500), "date_of_birth" date, "id_verified" boolean DEFAULT FALSE, "email_verified" boolean DEFAULT FALSE, "phone_verified" boolean DEFAULT FALSE, "status" character varying DEFAULT 'active', "data_retention_until" date, "anonymized" boolean DEFAULT FALSE, "anonymized_at" timestamp(6), "last_active_at" timestamp(6) DEFAULT CURRENT_TIMESTAMP) /*application='HandifyRails'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE INDEX "index_users_on_data_retention_until" ON "users" ("data_retention_until") /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email") /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_users_on_last_active_at" ON "users" ("last_active_at") /*application='HandifyRails'*/[0m
+  [1m[35m (17.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_phone" ON "users" ("phone") /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_users_on_status" ON "users" ("status") /*application='HandifyRails'*/[0m
+  [1m[35m (5.6ms)[0m  [1m[35mALTER TABLE "addresses" ADD CONSTRAINT "fk_rails_48c9e0c5a2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "admin_users" ADD CONSTRAINT "fk_rails_c4f75db4e4"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "audit_logs" ADD CONSTRAINT "fk_rails_1f26bc34ae"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "audit_logs" ADD CONSTRAINT "fk_rails_80894d3a2e"
+FOREIGN KEY ("admin_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "bids" ADD CONSTRAINT "fk_rails_77dd9f79eb"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "bids" ADD CONSTRAINT "fk_rails_8a46f10525"
+FOREIGN KEY ("tasker_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "categories" ADD CONSTRAINT "fk_rails_82f48f7407"
+FOREIGN KEY ("parent_id")
+  REFERENCES "categories" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "data_deletion_requests" ADD CONSTRAINT "fk_rails_c77a7a28b8"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "data_deletion_requests" ADD CONSTRAINT "fk_rails_658b45fbe9"
+FOREIGN KEY ("processed_by_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "direct_requests" ADD CONSTRAINT "fk_rails_c411e8c827"
+FOREIGN KEY ("address_id")
+  REFERENCES "addresses" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "direct_requests" ADD CONSTRAINT "fk_rails_4cd81cfef4"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "direct_requests" ADD CONSTRAINT "fk_rails_fe640ecc01"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (18.1ms)[0m  [1m[35mALTER TABLE "direct_requests" ADD CONSTRAINT "fk_rails_a93e406acb"
+FOREIGN KEY ("customer_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "direct_requests" ADD CONSTRAINT "fk_rails_bc8b228886"
+FOREIGN KEY ("tasker_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "disputes" ADD CONSTRAINT "fk_rails_7a91344094"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "disputes" ADD CONSTRAINT "fk_rails_19fcfdcf41"
+FOREIGN KEY ("raised_by_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "disputes" ADD CONSTRAINT "fk_rails_d53be54eee"
+FOREIGN KEY ("resolved_by_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_abede7cd6b"
+FOREIGN KEY ("customer_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_4431387d45"
+FOREIGN KEY ("tasker_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "gdpr_consents" ADD CONSTRAINT "fk_rails_b4b0bf56cf"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "messages" ADD CONSTRAINT "fk_rails_b85298e6e5"
+FOREIGN KEY ("direct_request_id")
+  REFERENCES "direct_requests" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "messages" ADD CONSTRAINT "fk_rails_c1c7834c95"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "messages" ADD CONSTRAINT "fk_rails_67c67d2963"
+FOREIGN KEY ("receiver_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "messages" ADD CONSTRAINT "fk_rails_b8f26a382d"
+FOREIGN KEY ("sender_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "notifications" ADD CONSTRAINT "fk_rails_b080fb4855"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "portfolio_items" ADD CONSTRAINT "fk_rails_c24af6e141"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "portfolio_items" ADD CONSTRAINT "fk_rails_ffdd7605b9"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "portfolio_items" ADD CONSTRAINT "fk_rails_50b88b76b9"
+FOREIGN KEY ("tasker_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "reviews" ADD CONSTRAINT "fk_rails_e94bf9f560"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (18.1ms)[0m  [1m[35mALTER TABLE "reviews" ADD CONSTRAINT "fk_rails_6c8f877405"
+FOREIGN KEY ("reviewee_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mALTER TABLE "reviews" ADD CONSTRAINT "fk_rails_007031d9cb"
+FOREIGN KEY ("reviewer_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "tasker_availability" ADD CONSTRAINT "fk_rails_5d30639e00"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "tasker_availability" ADD CONSTRAINT "fk_rails_c360fc1636"
+FOREIGN KEY ("tasker_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "tasker_profiles" ADD CONSTRAINT "fk_rails_23ecd8d5f3"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "tasks" ADD CONSTRAINT "fk_rails_63dc38d5e1"
+FOREIGN KEY ("address_id")
+  REFERENCES "addresses" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "tasks" ADD CONSTRAINT "fk_rails_acbc5a096e"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.8ms)[0m  [1m[35mALTER TABLE "tasks" ADD CONSTRAINT "fk_rails_cc224db8c4"
+FOREIGN KEY ("assigned_tasker_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "tasks" ADD CONSTRAINT "fk_rails_baab93bf04"
+FOREIGN KEY ("customer_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "transactions" ADD CONSTRAINT "fk_rails_c50de3ea97"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.9ms)[0m  [1m[35mALTER TABLE "transactions" ADD CONSTRAINT "fk_rails_984bd8f159"
+FOREIGN KEY ("customer_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (18.5ms)[0m  [1m[35mALTER TABLE "transactions" ADD CONSTRAINT "fk_rails_81088714a5"
+FOREIGN KEY ("tasker_id")
+  REFERENCES "users" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20251126210857) /*application='HandifyRails'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20251126210832),
+(20251126210752),
+(20251126210731),
+(20251126210719),
+(20251126210627),
+(20240101000002),
+(20240101000001),
+(20240101000000); /*application='HandifyRails'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-11-29 19:07:11.524459', '2025-11-29 19:07:11.524463') RETURNING "key" /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '7456f978e756c20c39a555268ec0194155949080', '2025-11-29 19:07:11.531373', '2025-11-29 19:07:11.531376') RETURNING "key" /*application='HandifyRails'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+Started POST "/users" for ::1 at 2025-11-29 21:07:21 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"John", "last_name"=>"Doe", "name"=>"John Doe"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"John", "last_name"=>"Doe", "name"=>"John Doe"}}}
+[31mUnpermitted parameters: :first_name, :last_name, :name. Context: { controller: Users::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00000001290b4b20>, params: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"John", "last_name"=>"Doe", "name"=>"John Doe"}, "controller"=>"users/registrations", "action"=>"create", "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"John", "last_name"=>"Doe", "name"=>"John Doe"}}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'john@example.com' LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'john@example.com' LIMIT 1[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (16.4ms)[0m  [1m[31mROLLBACK /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+Completed 422 Unprocessable Content in 324ms (Views: 2.2ms | ActiveRecord: 30.8ms (2 queries, 1 cached) | GC: 0.4ms)
+
+
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+Started POST "/users" for ::1 at 2025-11-29 21:09:12 +0200
+Processing by Users::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"John", "last_name"=>"Doe", "name"=>"John Doe"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"John", "last_name"=>"Doe", "name"=>"John Doe"}}}
+Completed 500 Internal Server Error in 231ms (ActiveRecord: 21.5ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'name' for User.)
+Caused by: NoMethodError (undefined method `name=' for an instance of User)
+
+Information for: ActiveModel::UnknownAttributeError (unknown attribute 'name' for User.):
+  
+app/controllers/users/registrations_controller.rb:8:in `create'
+
+Information for cause: NoMethodError (undefined method `name=' for an instance of User):
+  
+app/controllers/users/registrations_controller.rb:8:in `create'
+Started POST "/users" for ::1 at 2025-11-29 21:09:37 +0200
+Processing by Users::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"John", "last_name"=>"Doe", "name"=>"John Doe"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"John", "last_name"=>"Doe", "name"=>"John Doe"}}}
+[31mUnpermitted parameter: :name. Context: { controller: Users::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000000128f98b60>, params: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"John", "last_name"=>"Doe", "name"=>"John Doe"}, "controller"=>"users/registrations", "action"=>"create", "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"John", "last_name"=>"Doe", "name"=>"John Doe"}}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'john@example.com' LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'john@example.com' LIMIT 1[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Create (2.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "phone", "first_name", "last_name", "user_type", "profile_image_url", "date_of_birth", "id_verified", "email_verified", "phone_verified", "status", "data_retention_until", "anonymized", "anonymized_at") VALUES ('john@example.com', '$2a$12$ClmrViW01I3EukWFnSA3YeK/n5iQoua8sHec7uGxM//mSQTidnOKm', NULL, NULL, NULL, '2025-11-29 19:09:37.320421', '2025-11-29 19:09:37.320421', NULL, 'John', 'Doe', 'customer', NULL, NULL, FALSE, FALSE, FALSE, 'active', NULL, FALSE, NULL) RETURNING "id", "last_active_at" /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+Completed 200 OK in 221ms (Views: 0.1ms | ActiveRecord: 7.7ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/api/categories" for ::1 at 2025-11-29 21:10:08 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-11-29 21:10:08 +0200
+Started GET "/api/categories?with_services=true" for ::1 at 2025-11-29 21:10:08 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+Started GET "/api/profile/complete" for ::1 at 2025-11-29 21:10:24 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/profile/complete"):
+  
+Started POST "/users/sign_in" for ::1 at 2025-11-29 21:10:40 +0200
+Processing by Users::SessionsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (13.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'john@example.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='HandifyRails',controller='sessions'*/[0m
+  ↳ app/controllers/users/sessions_controller.rb:9:in `create'
+Completed 200 OK in 237ms (Views: 0.2ms | ActiveRecord: 13.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/categories" for ::1 at 2025-11-29 21:10:41 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+Started GET "/api/categories?with_services=true" for ::1 at 2025-11-29 21:10:41 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-11-29 21:10:41 +0200
+Started GET "/api/categories" for ::1 at 2025-11-29 21:10:41 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+Started GET "/api/categories?with_services=true" for ::1 at 2025-11-29 21:10:41 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-11-29 21:10:41 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+Started GET "/api/profile/complete" for ::1 at 2025-11-29 21:20:56 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/profile/complete"):
+  
+Started POST "/users/sign_in" for ::1 at 2025-11-29 21:28:46 +0200
+Processing by Users::SessionsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (31.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'john@example.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='HandifyRails',controller='sessions'*/[0m
+  ↳ app/controllers/users/sessions_controller.rb:9:in `create'
+Completed 200 OK in 406ms (Views: 2.3ms | ActiveRecord: 81.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/categories" for ::1 at 2025-11-29 21:28:47 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+Started GET "/api/categories?with_services=true" for ::1 at 2025-11-29 21:28:47 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-11-29 21:28:47 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+Started GET "/api/categories" for ::1 at 2025-11-29 21:28:57 +0200
+Started GET "/api/categories?with_services=true" for ::1 at 2025-11-29 21:28:57 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-11-29 21:28:57 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+Started GET "/api/profile/complete" for ::1 at 2025-11-29 21:28:59 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/profile/complete"):
+  
+Started POST "/users/sign_in" for ::1 at 2025-11-29 21:29:13 +0200
+Processing by Users::SessionsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (8.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'john@example.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='HandifyRails',controller='sessions'*/[0m
+  ↳ app/controllers/users/sessions_controller.rb:9:in `create'
+Completed 200 OK in 209ms (Views: 0.1ms | ActiveRecord: 8.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/categories" for ::1 at 2025-11-29 21:29:13 +0200
+Started GET "/api/categories?with_services=true" for ::1 at 2025-11-29 21:29:13 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-11-29 21:29:13 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+Started GET "/api/profile/complete" for ::1 at 2025-11-29 21:29:48 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/profile/complete"):
+  
+Started POST "/users/sign_in" for ::1 at 2025-11-29 21:30:04 +0200
+Processing by Users::SessionsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (18.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'john@example.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='HandifyRails',controller='sessions'*/[0m
+  ↳ app/controllers/users/sessions_controller.rb:9:in `create'
+Completed 200 OK in 231ms (Views: 0.1ms | ActiveRecord: 17.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/categories" for ::1 at 2025-11-29 21:30:05 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+Started GET "/api/categories?with_services=true" for ::1 at 2025-11-29 21:30:05 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-11-29 21:30:05 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (5.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+Migrating to AddProfileFieldsToUsers (20251127000000)
+  [1m[36mTRANSACTION (14.8ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (18.1ms)[0m  [1m[35mALTER TABLE "users" ADD "preferred_language" character varying DEFAULT 'English' /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "users" ADD "email_notifications" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "sms_notifications" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "push_notifications" boolean DEFAULT TRUE /*application='HandifyRails'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "payment_method" character varying DEFAULT 'credit_card' /*application='HandifyRails'*/[0m
+  [1m[35m (1.7ms)[0m  [1m[35mALTER TABLE "users" ADD "service_categories" jsonb DEFAULT '[]' /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "preferred_time_windows" jsonb DEFAULT '[]' /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251127000000') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[35m (16.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+Started GET "/api/categories" for ::1 at 2025-12-01 12:11:11 +0200
+Started GET "/api/categories?with_services=true" for ::1 at 2025-12-01 12:11:11 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-12-01 12:11:11 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+Started GET "/api/profile/complete" for ::1 at 2025-12-01 12:12:00 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/profile/complete"):
+  
+Started POST "/users" for ::1 at 2025-12-01 12:35:36 +0200
+Processing by Users::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Test", "last_name"=>"Account", "name"=>"Test Account"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Test", "last_name"=>"Account", "name"=>"Test Account"}}}
+[31mUnpermitted parameter: :name. Context: { controller: Users::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00000001299af338>, params: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Test", "last_name"=>"Account", "name"=>"Test Account"}, "controller"=>"users/registrations", "action"=>"create", "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Test", "last_name"=>"Account", "name"=>"Test Account"}}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Exists? (8.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@gmail.com' LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mCACHE User Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Create (8.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "phone", "first_name", "last_name", "user_type", "profile_image_url", "date_of_birth", "id_verified", "email_verified", "phone_verified", "status", "data_retention_until", "anonymized", "anonymized_at", "preferred_language", "email_notifications", "sms_notifications", "push_notifications", "payment_method", "service_categories", "preferred_time_windows") VALUES ('test@gmail.com', '$2a$12$EAjucdFASCvoUb3YpO0CWuMf57wR7XblwB5J.lyi61rVMY6whfw5a', NULL, NULL, NULL, '2025-12-01 10:35:37.048560', '2025-12-01 10:35:37.048560', NULL, 'Test', 'Account', 'customer', NULL, NULL, FALSE, FALSE, FALSE, 'active', NULL, FALSE, NULL, 'English', FALSE, FALSE, TRUE, 'credit_card', '[]', '[]') RETURNING "id", "last_active_at" /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mAddress Load (3.4ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = '93aaef4f-235c-4494-a23b-11be7a21dfa5' AND "addresses"."is_default" = TRUE LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/serializers/user_serializer.rb:33:in `default_address_hash'
+Completed 200 OK in 540ms (Views: 2.1ms | ActiveRecord: 64.4ms (4 queries, 1 cached) | GC: 2.5ms)
+
+
+Started GET "/api/categories" for ::1 at 2025-12-01 12:35:39 +0200
+Started GET "/api/categories?with_services=true" for ::1 at 2025-12-01 12:35:39 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-12-01 12:35:39 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+Started GET "/api/categories" for ::1 at 2025-12-01 12:37:09 +0200
+Started GET "/api/categories?with_services=true" for ::1 at 2025-12-01 12:37:09 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-12-01 12:37:09 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+Started GET "/api/profile/complete" for ::1 at 2025-12-01 12:37:10 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/profile/complete"):
+  
+  [1m[36mUser Load (57.8ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mUser Count (7.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" /*application='HandifyRails'*/[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mUser Load (4.8ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mUser Destroy (30.9ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = '93aaef4f-235c-4494-a23b-11be7a21dfa5' /*application='HandifyRails'*/[0m
+Started POST "/users" for ::1 at 2025-12-01 12:38:05 +0200
+Processing by Users::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Test", "last_name"=>"Account", "name"=>"Test Account"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Test", "last_name"=>"Account", "name"=>"Test Account"}}}
+[31mUnpermitted parameter: :name. Context: { controller: Users::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x000000012966b730>, params: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Test", "last_name"=>"Account", "name"=>"Test Account"}, "controller"=>"users/registrations", "action"=>"create", "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Test", "last_name"=>"Account", "name"=>"Test Account"}}} }[0m
+  [1m[36mTRANSACTION (15.7ms)[0m  [1m[35mBEGIN /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Exists? (21.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@account.com' LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@account.com' LIMIT 1[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "phone", "first_name", "last_name", "user_type", "profile_image_url", "date_of_birth", "id_verified", "email_verified", "phone_verified", "status", "data_retention_until", "anonymized", "anonymized_at", "preferred_language", "email_notifications", "sms_notifications", "push_notifications", "payment_method", "service_categories", "preferred_time_windows") VALUES ('test@account.com', '$2a$12$tJ9d/VHG7zrUrxnFDnlmdu37m7CRopgCNBws3B8iIfPj91zLsZrba', NULL, NULL, NULL, '2025-12-01 10:38:05.681327', '2025-12-01 10:38:05.681327', NULL, 'Test', 'Account', 'customer', NULL, NULL, FALSE, FALSE, FALSE, 'active', NULL, FALSE, NULL, 'English', FALSE, FALSE, TRUE, 'credit_card', '[]', '[]') RETURNING "id", "last_active_at" /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mAddress Load (0.6ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 'e1f15e59-b74e-466f-9587-0ab08474d71b' AND "addresses"."is_default" = TRUE LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/serializers/user_serializer.rb:33:in `default_address_hash'
+Completed 200 OK in 257ms (Views: 0.5ms | ActiveRecord: 37.8ms (4 queries, 1 cached) | GC: 1.5ms)
+
+
+Started GET "/api/categories" for ::1 at 2025-12-01 12:41:46 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-12-01 12:41:46 +0200
+Started GET "/api/categories?with_services=true" for ::1 at 2025-12-01 12:41:46 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+Started GET "/api/profile/complete" for ::1 at 2025-12-01 12:41:53 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/profile/complete"):
+  
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+Started POST "/users" for ::1 at 2025-12-01 12:43:47 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+Processing by Users::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Another", "last_name"=>"Test", "name"=>"Another Test"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Another", "last_name"=>"Test", "name"=>"Another Test"}}}
+[31mUnpermitted parameter: :name. Context: { controller: Users::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00000001220a2800>, params: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Another", "last_name"=>"Test", "name"=>"Another Test"}, "controller"=>"users/registrations", "action"=>"create", "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Another", "last_name"=>"Test", "name"=>"Another Test"}}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'onboarding@gmail.com' LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'onboarding@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "phone", "first_name", "last_name", "user_type", "profile_image_url", "date_of_birth", "id_verified", "email_verified", "phone_verified", "status", "data_retention_until", "anonymized", "anonymized_at", "preferred_language", "email_notifications", "sms_notifications", "push_notifications", "payment_method", "service_categories", "preferred_time_windows") VALUES ('onboarding@gmail.com', '$2a$12$BP7rFJt7Sm4zRVIyhEnz4eTloXSL6vDvhlUAHwOXctiM40FNrWoIq', NULL, NULL, NULL, '2025-12-01 10:43:47.794141', '2025-12-01 10:43:47.794141', NULL, 'Another', 'Test', 'customer', NULL, NULL, FALSE, FALSE, FALSE, 'active', NULL, FALSE, NULL, 'English', FALSE, FALSE, TRUE, 'credit_card', '[]', '[]') RETURNING "id", "last_active_at" /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mAddress Load (0.6ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = '037b490c-2295-4d13-8917-3a49099101e2' AND "addresses"."is_default" = TRUE LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/serializers/user_serializer.rb:33:in `default_address_hash'
+Completed 200 OK in 302ms (Views: 0.3ms | ActiveRecord: 22.2ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/user_profiles/complete" for ::1 at 2025-12-01 12:44:25 +0200
+Processing by Api::V1::UserProfilesController#complete as JSON
+  Parameters: {"photo_url"=>nil, "preferred_language"=>"English", "email_notifications"=>"[FILTERED]", "sms_notifications"=>true, "push_notifications"=>true, "user_type"=>"both", "location_address"=>"Stockton St", "location_city"=>"San Francisco", "location_zip"=>"94108", "service_categories"=>["cleaning", "repairs", "personal_care", "business"], "preferred_time_windows"=>["morning", "afternoon", "evening"], "payment_method"=>"credit_card", "user_profile"=>{"photo_url"=>nil, "preferred_language"=>"English", "email_notifications"=>"[FILTERED]", "sms_notifications"=>true, "push_notifications"=>true, "user_type"=>"both", "location_address"=>"Stockton St", "location_city"=>"San Francisco", "location_zip"=>"94108", "service_categories"=>["cleaning", "repairs", "personal_care", "business"], "preferred_time_windows"=>["morning", "afternoon", "evening"], "payment_method"=>"credit_card"}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/user_profiles/complete" for ::1 at 2025-12-01 12:44:58 +0200
+Processing by Api::V1::UserProfilesController#complete as JSON
+  Parameters: {"photo_url"=>nil, "preferred_language"=>"English", "email_notifications"=>"[FILTERED]", "sms_notifications"=>true, "push_notifications"=>true, "user_type"=>"both", "location_address"=>"Stockton St", "location_city"=>"San Francisco", "location_zip"=>"94108", "service_categories"=>["cleaning", "repairs", "personal_care", "business"], "preferred_time_windows"=>["morning", "afternoon", "evening"], "payment_method"=>"credit_card", "user_profile"=>{"photo_url"=>nil, "preferred_language"=>"English", "email_notifications"=>"[FILTERED]", "sms_notifications"=>true, "push_notifications"=>true, "user_type"=>"both", "location_address"=>"Stockton St", "location_city"=>"San Francisco", "location_zip"=>"94108", "service_categories"=>["cleaning", "repairs", "personal_care", "business"], "preferred_time_windows"=>["morning", "afternoon", "evening"], "payment_method"=>"credit_card"}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/categories" for ::1 at 2025-12-01 12:45:49 +0200
+Started GET "/api/categories?with_services=true" for ::1 at 2025-12-01 12:45:49 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-12-01 12:45:49 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+Started GET "/api/categories" for ::1 at 2025-12-01 12:47:06 +0200
+Started GET "/api/categories?with_services=true" for ::1 at 2025-12-01 12:47:06 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-12-01 12:47:06 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+Started GET "/api/categories" for ::1 at 2025-12-01 12:47:11 +0200
+Started GET "/api/categories?with_services=true" for ::1 at 2025-12-01 12:47:11 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-12-01 12:47:11 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+Started GET "/api/categories" for ::1 at 2025-12-01 12:47:16 +0200
+Started GET "/api/categories?with_services=true" for ::1 at 2025-12-01 12:47:16 +0200
+Started GET "/api/services?limit=10" for ::1 at 2025-12-01 12:47:16 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/services"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/api/categories"):
+  
+Started GET "/api/profile/complete" for ::1 at 2025-12-01 12:47:38 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/profile/complete"):
+  
+Started POST "/users" for ::1 at 2025-12-01 12:47:56 +0200
+Processing by Users::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}}}
+[31mUnpermitted parameter: :name. Context: { controller: Users::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000000122406ff0>, params: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}, "controller"=>"users/registrations", "action"=>"create", "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}}} }[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Exists? (4.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'onnnboarding@gmail.com' LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'onnnboarding@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Create (2.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "phone", "first_name", "last_name", "user_type", "profile_image_url", "date_of_birth", "id_verified", "email_verified", "phone_verified", "status", "data_retention_until", "anonymized", "anonymized_at", "preferred_language", "email_notifications", "sms_notifications", "push_notifications", "payment_method", "service_categories", "preferred_time_windows") VALUES ('onnnboarding@gmail.com', '$2a$12$nGtHigixI9zcmONTcqfWX.mB/KgBER0HSh382AZJMgFTGeU5Y56di', NULL, NULL, NULL, '2025-12-01 10:47:57.130893', '2025-12-01 10:47:57.130893', NULL, 'Onboarding', 'Test', 'customer', NULL, NULL, FALSE, FALSE, FALSE, 'active', NULL, FALSE, NULL, 'English', FALSE, FALSE, TRUE, 'credit_card', '[]', '[]') RETURNING "id", "last_active_at" /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mAddress Load (0.3ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = '55407a24-c3d8-48d7-8048-f161db50c94b' AND "addresses"."is_default" = TRUE LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/serializers/user_serializer.rb:33:in `default_address_hash'
+Completed 200 OK in 233ms (Views: 0.3ms | ActiveRecord: 10.0ms (4 queries, 1 cached) | GC: 0.8ms)
+
+
+  [1m[36mUser Delete All (57.3ms)[0m  [1m[31mDELETE FROM "users" /*application='HandifyRails'*/[0m
+Started POST "/users" for ::1 at 2025-12-01 12:50:48 +0200
+Processing by Users::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}}}
+[31mUnpermitted parameter: :name. Context: { controller: Users::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x000000012268d170>, params: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}, "controller"=>"users/registrations", "action"=>"create", "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Exists? (6.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'onboarding@gmail.com' LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'onboarding@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Create (2.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "phone", "first_name", "last_name", "user_type", "profile_image_url", "date_of_birth", "id_verified", "email_verified", "phone_verified", "status", "data_retention_until", "anonymized", "anonymized_at", "preferred_language", "email_notifications", "sms_notifications", "push_notifications", "payment_method", "service_categories", "preferred_time_windows") VALUES ('onboarding@gmail.com', '$2a$12$Hc.qZLBnwZr3XcmNhDbXduTrQhG8FQIxaNAiQSFLCyrMNJdbJWEMe', NULL, NULL, NULL, '2025-12-01 10:50:48.348191', '2025-12-01 10:50:48.348191', NULL, 'Onboarding', 'Test', 'customer', NULL, NULL, FALSE, FALSE, FALSE, 'active', NULL, FALSE, NULL, 'English', FALSE, FALSE, TRUE, 'credit_card', '[]', '[]') RETURNING "id", "last_active_at" /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 'dbf95fef-886b-4968-b0d9-9d46c0489d87' AND "addresses"."is_default" = TRUE LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/serializers/user_serializer.rb:33:in `default_address_hash'
+Completed 200 OK in 233ms (Views: 0.3ms | ActiveRecord: 10.2ms (4 queries, 1 cached) | GC: 0.7ms)
+
+
+  [1m[36mUser Delete All (11.3ms)[0m  [1m[31mDELETE FROM "users" /*application='HandifyRails'*/[0m
+Started POST "/users" for ::1 at 2025-12-01 12:54:46 +0200
+Processing by Users::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}}}
+[31mUnpermitted parameter: :name. Context: { controller: Users::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00000001225e44d0>, params: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}, "controller"=>"users/registrations", "action"=>"create", "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Exists? (6.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'onboarding@gmail.com' LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'onboarding@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Create (1.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "phone", "first_name", "last_name", "user_type", "profile_image_url", "date_of_birth", "id_verified", "email_verified", "phone_verified", "status", "data_retention_until", "anonymized", "anonymized_at", "preferred_language", "email_notifications", "sms_notifications", "push_notifications", "payment_method", "service_categories", "preferred_time_windows") VALUES ('onboarding@gmail.com', '$2a$12$DlL8g0FHQgRUuu2XlNqqb.HC8N2Db3sur5Bb0w/OrK5Gmp19tmdS6', NULL, NULL, NULL, '2025-12-01 10:54:47.497806', '2025-12-01 10:54:47.497806', NULL, 'Onboarding', 'Test', 'customer', NULL, NULL, FALSE, FALSE, FALSE, 'active', NULL, FALSE, NULL, 'English', FALSE, FALSE, TRUE, 'credit_card', '[]', '[]') RETURNING "id", "last_active_at" /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+Completed 500 Internal Server Error in 264ms (ActiveRecord: 34.8ms (3 queries, 1 cached) | GC: 4.2ms)
+
+
+  
+NoMethodError (undefined method `empty?' for an instance of ApplicationController::NullSession):
+  
+app/controllers/users/registrations_controller.rb:31:in `respond_with'
+app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Delete All (8.2ms)[0m  [1m[31mDELETE FROM "users" /*application='HandifyRails'*/[0m
+Started POST "/users" for ::1 at 2025-12-01 12:55:36 +0200
+Processing by Users::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}}}
+[31mUnpermitted parameter: :name. Context: { controller: Users::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x000000012210f298>, params: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}, "controller"=>"users/registrations", "action"=>"create", "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Onboarding", "last_name"=>"Test", "name"=>"Onboarding Test"}}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'onboarding@gmail.com' LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'onboarding@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "phone", "first_name", "last_name", "user_type", "profile_image_url", "date_of_birth", "id_verified", "email_verified", "phone_verified", "status", "data_retention_until", "anonymized", "anonymized_at", "preferred_language", "email_notifications", "sms_notifications", "push_notifications", "payment_method", "service_categories", "preferred_time_windows") VALUES ('onboarding@gmail.com', '$2a$12$oGK9FR2wIblRMfrZHZymduGh/ZcGSmZnP7fhlRNwCXPUzO6Ir4SG2', NULL, NULL, NULL, '2025-12-01 10:55:37.562187', '2025-12-01 10:55:37.562187', NULL, 'Onboarding', 'Test', 'customer', NULL, NULL, FALSE, FALSE, FALSE, 'active', NULL, FALSE, NULL, 'English', FALSE, FALSE, TRUE, 'credit_card', '[]', '[]') RETURNING "id", "last_active_at" /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 'acdeb79a-86b9-46d0-84d4-9b84494d8362' AND "addresses"."is_default" = TRUE LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/serializers/user_serializer.rb:33:in `default_address_hash'
+Completed 200 OK in 247ms (Views: 0.1ms | ActiveRecord: 14.7ms (4 queries, 1 cached) | GC: 0.9ms)
+
+
+Started POST "/api/v1/user_profiles/complete" for ::1 at 2025-12-01 12:55:53 +0200
+Processing by Api::V1::UserProfilesController#complete as JSON
+  Parameters: {"photo_url"=>nil, "preferred_language"=>"English", "email_notifications"=>"[FILTERED]", "sms_notifications"=>true, "push_notifications"=>true, "user_type"=>"provider", "location_address"=>"Stockton St", "location_city"=>"San Francisco", "location_zip"=>"94108", "service_categories"=>["personal_care", "business", "urgent"], "preferred_time_windows"=>["afternoon", "morning"], "payment_method"=>"credit_card", "user_profile"=>{"photo_url"=>nil, "preferred_language"=>"English", "email_notifications"=>"[FILTERED]", "sms_notifications"=>true, "push_notifications"=>true, "user_type"=>"provider", "location_address"=>"Stockton St", "location_city"=>"San Francisco", "location_zip"=>"94108", "service_categories"=>["personal_care", "business", "urgent"], "preferred_time_windows"=>["afternoon", "morning"], "payment_method"=>"credit_card"}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'acdeb79a-86b9-46d0-84d4-9b84494d8362' LIMIT 1 /*action='complete',application='HandifyRails',controller='user_profiles'*/[0m
+  ↳ app/controllers/application_controller.rb:12:in `authenticate_user!'
+  [1m[36mJwtDenylist Exists? (7.1ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylist" WHERE "jwt_denylist"."jti" = '499a74d9-1c2a-4d90-8a93-bc283ae2b0b3' LIMIT 1 /*action='complete',application='HandifyRails',controller='user_profiles'*/[0m
+  ↳ app/controllers/application_controller.rb:12:in `authenticate_user!'
+Completed 422 Unprocessable Content in 18ms (Views: 0.2ms | ActiveRecord: 11.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+

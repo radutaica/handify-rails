@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_26_210857) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_27_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -394,6 +394,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_26_210857) do
     t.boolean "anonymized", default: false
     t.datetime "anonymized_at"
     t.datetime "last_active_at", default: -> { "CURRENT_TIMESTAMP" }
+    t.string "preferred_language", default: "English"
+    t.boolean "email_notifications", default: false
+    t.boolean "sms_notifications", default: false
+    t.boolean "push_notifications", default: true
+    t.string "payment_method", default: "credit_card"
+    t.jsonb "service_categories", default: []
+    t.jsonb "preferred_time_windows", default: []
     t.index ["data_retention_until"], name: "index_users_on_data_retention_until"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["last_active_at"], name: "index_users_on_last_active_at"

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
       # User profiles
       resources :tasker_profiles, only: [:index, :show, :create, :update, :destroy]
+      post 'user_profiles/complete', to: 'user_profiles#complete'
 
       # Tasks and bidding
       resources :tasks, only: [:index, :show, :create, :update, :destroy] do

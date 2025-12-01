@@ -27,10 +27,25 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def respond_with(resource, _opts = {})
+    # Generate JWT token manually using the same mechanism as devise-jwt
+    token = generate_jwt_token(resource)
+    
     render json: {
       status: { code: 200, message: 'Logged in successfully.' },
-      data: UserSerializer.new(resource).serializable_hash
+      data: UserSerializer.new(resource).serializable_hash,
+      token: token
     }, status: :ok
+  end
+
+  def generate_jwt_token(user)
+    # Use the same encoder that devise-jwt uses internally
+    Warden::JWTAuth::UserEncoder.new.call(user, :user, nil).first
+  rescue StandardError => e
+    Rails.logger.error "Failed to generate JWT token: #{e.message}"
+    # Fallback to manual token generation
+    payload = { sub: user.id.to_s, scp: 'user', jti: SecureRandom.uuid }
+    secret = Rails.application.credentials.devise_jwt_secret_key || Rails.application.secret_key_base
+    JWT.encode(payload, secret, 'HS256')
   end
 
   def respond_to_on_destroy
