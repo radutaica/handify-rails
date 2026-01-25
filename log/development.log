@@ -1,0 +1,1270 @@
+  [1m[35mSQL (0.7ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (2227.1ms)[0m  [1m[35mCREATE DATABASE "handify_development" ENCODING = 'unicode' /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (57.2ms)[0m  [1m[35mCREATE DATABASE "handify_test" ENCODING = 'unicode' /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "jwt_denylist" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "jwt_denylist" ("id" bigserial primary key, "jti" character varying NOT NULL, "exp" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_jwt_denylist_on_jti" ON "jwt_denylist" ("jti") /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20240101000002) /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20240101000001); /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-11-26 21:09:33.876483', '2025-11-26 21:09:33.876484') RETURNING "key" /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '1b1ed1b14739aa287fac78cfa336fb506c01a310', '2025-11-26 21:09:33.878106', '2025-11-26 21:09:33.878107') RETURNING "key" /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+Migrating to EnableUuidExtension (20251126210613)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35mSQL (11.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "pgcrypto" /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251126210613') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+Migrating to ExtendUsersAndAddUserTables (20251126210627)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE "users" ALTER COLUMN "email" TYPE character varying, ALTER COLUMN "email" DROP DEFAULT, ALTER COLUMN "email" SET NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "phone" character varying(20) /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "first_name" character varying(100) NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "last_name" character varying(100) NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "user_type" character varying DEFAULT 'customer' NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "profile_image_url" character varying(500) /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "date_of_birth" date /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "id_verified" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "email_verified" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "phone_verified" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "status" character varying DEFAULT 'active' /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mALTER TABLE "users" ADD "data_retention_until" date /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "anonymized" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "anonymized_at" timestamp(6) /*application='HandifyRails'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" ADD "last_active_at" timestamp(6) DEFAULT CURRENT_TIMESTAMP /*application='HandifyRails'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_phone" ON "users" ("phone") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_status" ON "users" ("status") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_data_retention_until" ON "users" ("data_retention_until") /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_users_on_last_active_at" ON "users" ("last_active_at") /*application='HandifyRails'*/[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "tasker_profiles" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "bio" text, "hourly_rate" decimal(10,2), "allows_instant_booking" boolean DEFAULT FALSE, "instant_booking_buffer_hours" integer DEFAULT 24, "availability" jsonb, "skills" jsonb, "experience_years" integer, "background_check_status" character varying DEFAULT 'pending', "background_check_date" timestamp(6), "insurance_verified" boolean DEFAULT FALSE, "avg_rating" decimal(3,2) DEFAULT 0.0, "total_tasks_completed" integer DEFAULT 0, "total_earnings" decimal(12,2) DEFAULT 0.0, "response_rate" decimal(5,2) DEFAULT 0.0, "response_time_hours" decimal(6,2), "stripe_account_id" character varying, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_23ecd8d5f3"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (79.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "handify_development" /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (29.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "handify_test" /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (108.5ms)[0m  [1m[35mCREATE DATABASE "handify_development" ENCODING = 'unicode' /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (59.0ms)[0m  [1m[35mCREATE DATABASE "handify_test" ENCODING = 'unicode' /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "jwt_denylist" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE TABLE "jwt_denylist" ("id" bigserial primary key, "jti" character varying NOT NULL, "exp" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE INDEX "index_jwt_denylist_on_jti" ON "jwt_denylist" ("jti") /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email") /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='HandifyRails'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20240101000002) /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20240101000001); /*application='HandifyRails'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-11-26 21:10:13.739148', '2025-11-26 21:10:13.739149') RETURNING "key" /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '1b1ed1b14739aa287fac78cfa336fb506c01a310', '2025-11-26 21:10:13.741472', '2025-11-26 21:10:13.741473') RETURNING "key" /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+Migrating to EnableUuidExtension (20251126210613)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35mSQL (3.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "pgcrypto" /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251126210613') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+Migrating to ExtendUsersAndAddUserTables (20251126210627)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "users" ALTER COLUMN "email" TYPE character varying, ALTER COLUMN "email" DROP DEFAULT, ALTER COLUMN "email" SET NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "phone" character varying(20) /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "first_name" character varying(100) NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "last_name" character varying(100) NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "user_type" character varying DEFAULT 'customer' NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mALTER TABLE "users" ADD "profile_image_url" character varying(500) /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mALTER TABLE "users" ADD "date_of_birth" date /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "id_verified" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "email_verified" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "phone_verified" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "status" character varying DEFAULT 'active' /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mALTER TABLE "users" ADD "data_retention_until" date /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "anonymized" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mALTER TABLE "users" ADD "anonymized_at" timestamp(6) /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "last_active_at" timestamp(6) DEFAULT CURRENT_TIMESTAMP /*application='HandifyRails'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_phone" ON "users" ("phone") /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_users_on_status" ON "users" ("status") /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_users_on_data_retention_until" ON "users" ("data_retention_until") /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_users_on_last_active_at" ON "users" ("last_active_at") /*application='HandifyRails'*/[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "tasker_profiles" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "bio" text, "hourly_rate" decimal(10,2), "allows_instant_booking" boolean DEFAULT FALSE, "instant_booking_buffer_hours" integer DEFAULT 24, "availability" jsonb, "skills" jsonb, "experience_years" integer, "background_check_status" character varying DEFAULT 'pending', "background_check_date" timestamp(6), "insurance_verified" boolean DEFAULT FALSE, "avg_rating" decimal(3,2) DEFAULT 0.0, "total_tasks_completed" integer DEFAULT 0, "total_earnings" decimal(12,2) DEFAULT 0.0, "response_rate" decimal(5,2) DEFAULT 0.0, "response_time_hours" decimal(6,2), "stripe_account_id" character varying, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_23ecd8d5f3"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (69.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "handify_development" /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (28.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "handify_test" /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (82.3ms)[0m  [1m[35mCREATE DATABASE "handify_development" ENCODING = 'unicode' /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (54.6ms)[0m  [1m[35mCREATE DATABASE "handify_test" ENCODING = 'unicode' /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "jwt_denylist" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "jwt_denylist" ("id" bigserial primary key, "jti" character varying NOT NULL, "exp" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE INDEX "index_jwt_denylist_on_jti" ON "jwt_denylist" ("jti") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE /*application='HandifyRails'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email") /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='HandifyRails'*/[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20240101000002) /*application='HandifyRails'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20240101000001),
+(20240101000000); /*application='HandifyRails'*/[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-11-26 21:10:36.954670', '2025-11-26 21:10:36.954671') RETURNING "key" /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '1b1ed1b14739aa287fac78cfa336fb506c01a310', '2025-11-26 21:10:36.956774', '2025-11-26 21:10:36.956774') RETURNING "key" /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+Migrating to ExtendUsersAndAddUserTables (20251126210627)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "users" ALTER COLUMN "email" TYPE character varying, ALTER COLUMN "email" DROP DEFAULT, ALTER COLUMN "email" SET NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "phone" character varying(20) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "first_name" character varying(100) NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "last_name" character varying(100) NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "user_type" character varying DEFAULT 'customer' NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "profile_image_url" character varying(500) /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "date_of_birth" date /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "id_verified" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "email_verified" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "phone_verified" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "status" character varying DEFAULT 'active' /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "data_retention_until" date /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "anonymized" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "anonymized_at" timestamp(6) /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "last_active_at" timestamp(6) DEFAULT CURRENT_TIMESTAMP /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_phone" ON "users" ("phone") /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_users_on_status" ON "users" ("status") /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_users_on_data_retention_until" ON "users" ("data_retention_until") /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_users_on_last_active_at" ON "users" ("last_active_at") /*application='HandifyRails'*/[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "tasker_profiles" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "bio" text, "hourly_rate" decimal(10,2), "allows_instant_booking" boolean DEFAULT FALSE, "instant_booking_buffer_hours" integer DEFAULT 24, "availability" jsonb, "skills" jsonb, "experience_years" integer, "background_check_status" character varying DEFAULT 'pending', "background_check_date" timestamp(6), "insurance_verified" boolean DEFAULT FALSE, "avg_rating" decimal(3,2) DEFAULT 0.0, "total_tasks_completed" integer DEFAULT 0, "total_earnings" decimal(12,2) DEFAULT 0.0, "response_rate" decimal(5,2) DEFAULT 0.0, "response_time_hours" decimal(6,2), "stripe_account_id" character varying, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_23ecd8d5f3"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (76.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "handify_development" /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (29.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "handify_test" /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (96.8ms)[0m  [1m[35mCREATE DATABASE "handify_development" ENCODING = 'unicode' /*application='HandifyRails'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='HandifyRails'*/[0m
+  [1m[35m (50.2ms)[0m  [1m[35mCREATE DATABASE "handify_test" ENCODING = 'unicode' /*application='HandifyRails'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-11-26 21:11:17.067430', '2025-11-26 21:11:17.067432') RETURNING "key" /*application='HandifyRails'*/[0m
+Migrating to EnableUuidExtension (20240101000000)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35mSQL (3.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "pgcrypto" /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000000') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+Migrating to DeviseCreateUsers (20240101000001)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000001') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+Migrating to CreateJwtDenylist (20240101000002)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "jwt_denylist" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "jti" character varying NOT NULL, "exp" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_jwt_denylist_on_jti" ON "jwt_denylist" ("jti") /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000002') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+Migrating to ExtendUsersAndAddUserTables (20251126210627)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" ALTER COLUMN "email" TYPE character varying, ALTER COLUMN "email" DROP DEFAULT, ALTER COLUMN "email" SET NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mALTER TABLE "users" ADD "phone" character varying(20) /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "first_name" character varying(100) NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mALTER TABLE "users" ADD "last_name" character varying(100) NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "user_type" character varying DEFAULT 'customer' NOT NULL /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mALTER TABLE "users" ADD "profile_image_url" character varying(500) /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mALTER TABLE "users" ADD "date_of_birth" date /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "id_verified" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "email_verified" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "phone_verified" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "status" character varying DEFAULT 'active' /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mALTER TABLE "users" ADD "data_retention_until" date /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "anonymized" boolean DEFAULT FALSE /*application='HandifyRails'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mALTER TABLE "users" ADD "anonymized_at" timestamp(6) /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "last_active_at" timestamp(6) DEFAULT CURRENT_TIMESTAMP /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_phone" ON "users" ("phone") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_status" ON "users" ("status") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_data_retention_until" ON "users" ("data_retention_until") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_last_active_at" ON "users" ("last_active_at") /*application='HandifyRails'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "tasker_profiles" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "bio" text, "hourly_rate" decimal(10,2), "allows_instant_booking" boolean DEFAULT FALSE, "instant_booking_buffer_hours" integer DEFAULT 24, "availability" jsonb, "skills" jsonb, "experience_years" integer, "background_check_status" character varying DEFAULT 'pending', "background_check_date" timestamp(6), "insurance_verified" boolean DEFAULT FALSE, "avg_rating" decimal(3,2) DEFAULT 0.0, "total_tasks_completed" integer DEFAULT 0, "total_earnings" decimal(12,2) DEFAULT 0.0, "response_rate" decimal(5,2) DEFAULT 0.0, "response_time_hours" decimal(6,2), "stripe_account_id" character varying, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_23ecd8d5f3"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_tasker_profiles_on_user_id" ON "tasker_profiles" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "addresses" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "label" character varying(50), "street_address" character varying NOT NULL, "city" character varying(100) NOT NULL, "county" character varying(100), "postal_code" character varying(20), "country" character varying(2) DEFAULT 'RO', "latitude" decimal(10,8), "longitude" decimal(11,8), "is_default" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_48c9e0c5a2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_addresses_on_user_id" ON "addresses" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "admin_users" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "role" character varying NOT NULL, "permissions" jsonb, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_c4f75db4e4"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admin_users_on_user_id" ON "admin_users" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251126210627') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+Migrating to CreateCategories (20251126210719)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "categories" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "name" character varying(100) NOT NULL, "slug" character varying(100) NOT NULL, "description" text, "icon_url" character varying(500), "parent_id" uuid, "suggested_hourly_rate" decimal(10,2), "is_active" boolean DEFAULT TRUE, "sort_order" integer DEFAULT 0, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_82f48f7407"
+FOREIGN KEY ("parent_id")
+  REFERENCES "categories" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_categories_on_parent_id" ON "categories" ("parent_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_categories_on_slug" ON "categories" ("slug") /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251126210719') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+Migrating to CreateTasksAndBidding (20251126210731)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "customer_id" uuid NOT NULL, "category_id" uuid NOT NULL, "title" character varying(200) NOT NULL, "description" text NOT NULL, "address_id" uuid NOT NULL, "task_date" date, "task_time" time, "is_flexible_timing" boolean DEFAULT FALSE, "estimated_hours" decimal(4,2), "pricing_type" character varying DEFAULT 'bidding' NOT NULL, "budget_min" decimal(10,2), "budget_max" decimal(10,2), "fixed_price" decimal(10,2), "hourly_budget" decimal(10,2), "booking_type" character varying DEFAULT 'open_bidding' NOT NULL, "status" character varying DEFAULT 'open', "urgency" character varying DEFAULT 'medium', "images" jsonb, "requirements" text, "assigned_tasker_id" uuid, "assigned_at" timestamp(6), "completed_at" timestamp(6), "cancelled_at" timestamp(6), "cancellation_reason" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_baab93bf04"
+FOREIGN KEY ("customer_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_acbc5a096e"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+, CONSTRAINT "fk_rails_63dc38d5e1"
+FOREIGN KEY ("address_id")
+  REFERENCES "addresses" ("id")
+, CONSTRAINT "fk_rails_cc224db8c4"
+FOREIGN KEY ("assigned_tasker_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_customer_id" ON "tasks" ("customer_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_category_id" ON "tasks" ("category_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_address_id" ON "tasks" ("address_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_assigned_tasker_id" ON "tasks" ("assigned_tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "bids" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "task_id" uuid NOT NULL, "tasker_id" uuid NOT NULL, "amount" decimal(10,2) NOT NULL, "estimated_hours" decimal(4,2), "proposed_date" date, "proposed_time" time, "message" text, "status" character varying DEFAULT 'pending', "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_77dd9f79eb"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+, CONSTRAINT "fk_rails_8a46f10525"
+FOREIGN KEY ("tasker_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_bids_on_task_id" ON "bids" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_bids_on_tasker_id" ON "bids" ("tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_bids_on_task_id_and_tasker_id" ON "bids" ("task_id", "tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "direct_requests" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "customer_id" uuid NOT NULL, "tasker_id" uuid NOT NULL, "category_id" uuid NOT NULL, "title" character varying(200) NOT NULL, "description" text NOT NULL, "address_id" uuid NOT NULL, "preferred_date" date, "preferred_time" time, "estimated_hours" decimal(4,2), "proposed_amount" decimal(10,2), "status" character varying DEFAULT 'pending', "tasker_counter_amount" decimal(10,2), "tasker_message" text, "task_id" uuid, "expires_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_a93e406acb"
+FOREIGN KEY ("customer_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_bc8b228886"
+FOREIGN KEY ("tasker_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_4cd81cfef4"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+, CONSTRAINT "fk_rails_c411e8c827"
+FOREIGN KEY ("address_id")
+  REFERENCES "addresses" ("id")
+, CONSTRAINT "fk_rails_fe640ecc01"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_direct_requests_on_customer_id" ON "direct_requests" ("customer_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_direct_requests_on_tasker_id" ON "direct_requests" ("tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_direct_requests_on_category_id" ON "direct_requests" ("category_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_direct_requests_on_address_id" ON "direct_requests" ("address_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_direct_requests_on_task_id" ON "direct_requests" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "tasker_availability" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "tasker_id" uuid NOT NULL, "date" date NOT NULL, "start_time" time NOT NULL, "end_time" time NOT NULL, "is_available" boolean DEFAULT TRUE, "is_booked" boolean DEFAULT FALSE, "task_id" uuid, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_c360fc1636"
+FOREIGN KEY ("tasker_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_5d30639e00"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_tasker_availability_on_tasker_id" ON "tasker_availability" ("tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_tasker_availability_on_task_id" ON "tasker_availability" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_tasker_availability_unique" ON "tasker_availability" ("tasker_id", "date", "start_time") /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251126210731') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+Migrating to CreateTransactions (20251126210752)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "task_id" uuid NOT NULL, "customer_id" uuid NOT NULL, "tasker_id" uuid NOT NULL, "amount" decimal(10,2) NOT NULL, "platform_fee" decimal(10,2) NOT NULL, "platform_fee_percentage" decimal(5,2) NOT NULL, "tasker_amount" decimal(10,2) NOT NULL, "stripe_payment_intent_id" character varying, "stripe_transfer_id" character varying, "status" character varying DEFAULT 'pending', "payment_method" character varying DEFAULT 'card', "paid_at" timestamp(6), "released_at" timestamp(6), "refunded_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_c50de3ea97"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+, CONSTRAINT "fk_rails_984bd8f159"
+FOREIGN KEY ("customer_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_81088714a5"
+FOREIGN KEY ("tasker_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_transactions_on_task_id" ON "transactions" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_transactions_on_customer_id" ON "transactions" ("customer_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_transactions_on_tasker_id" ON "transactions" ("tasker_id") /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251126210752') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+Migrating to CreateSocialFeatures (20251126210832)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "task_id" uuid NOT NULL, "reviewer_id" uuid NOT NULL, "reviewee_id" uuid NOT NULL, "rating" integer NOT NULL, "comment" text, "review_type" character varying NOT NULL, "tags" jsonb, "is_public" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e94bf9f560"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+, CONSTRAINT "fk_rails_007031d9cb"
+FOREIGN KEY ("reviewer_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_6c8f877405"
+FOREIGN KEY ("reviewee_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_task_id" ON "reviews" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_reviewer_id" ON "reviews" ("reviewer_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_reviewee_id" ON "reviews" ("reviewee_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_reviews_on_task_id_and_reviewer_id" ON "reviews" ("task_id", "reviewer_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "messages" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "task_id" uuid, "direct_request_id" uuid, "sender_id" uuid NOT NULL, "receiver_id" uuid NOT NULL, "message" text NOT NULL, "is_read" boolean DEFAULT FALSE, "read_at" timestamp(6), "attachment_url" character varying(500), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_c1c7834c95"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+, CONSTRAINT "fk_rails_b85298e6e5"
+FOREIGN KEY ("direct_request_id")
+  REFERENCES "direct_requests" ("id")
+, CONSTRAINT "fk_rails_b8f26a382d"
+FOREIGN KEY ("sender_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_67c67d2963"
+FOREIGN KEY ("receiver_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_messages_on_task_id" ON "messages" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_messages_on_direct_request_id" ON "messages" ("direct_request_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_messages_on_sender_id" ON "messages" ("sender_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_messages_on_receiver_id" ON "messages" ("receiver_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "notifications" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "type" character varying NOT NULL, "title" character varying(200) NOT NULL, "message" text NOT NULL, "related_id" uuid, "is_read" boolean DEFAULT FALSE, "read_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_b080fb4855"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_notifications_on_user_id" ON "notifications" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "customer_id" uuid NOT NULL, "tasker_id" uuid NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_abede7cd6b"
+FOREIGN KEY ("customer_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_4431387d45"
+FOREIGN KEY ("tasker_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_favorites_on_customer_id" ON "favorites" ("customer_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_favorites_on_tasker_id" ON "favorites" ("tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_favorites_on_customer_id_and_tasker_id" ON "favorites" ("customer_id", "tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "portfolio_items" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "tasker_id" uuid NOT NULL, "title" character varying(200) NOT NULL, "description" text, "category_id" uuid, "images" jsonb NOT NULL, "task_id" uuid, "is_featured" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_50b88b76b9"
+FOREIGN KEY ("tasker_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_c24af6e141"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+, CONSTRAINT "fk_rails_ffdd7605b9"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_portfolio_items_on_tasker_id" ON "portfolio_items" ("tasker_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_portfolio_items_on_category_id" ON "portfolio_items" ("category_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_portfolio_items_on_task_id" ON "portfolio_items" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "disputes" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "task_id" uuid NOT NULL, "raised_by_id" uuid NOT NULL, "reason" text NOT NULL, "status" character varying DEFAULT 'open', "resolution" text, "resolved_by_id" uuid, "resolved_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7a91344094"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+, CONSTRAINT "fk_rails_19fcfdcf41"
+FOREIGN KEY ("raised_by_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_d53be54eee"
+FOREIGN KEY ("resolved_by_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_disputes_on_task_id" ON "disputes" ("task_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_disputes_on_raised_by_id" ON "disputes" ("raised_by_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_disputes_on_resolved_by_id" ON "disputes" ("resolved_by_id") /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251126210832') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+Migrating to CreateGdprCompliance (20251126210857)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "gdpr_consents" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "consent_type" character varying NOT NULL, "version" character varying(20) NOT NULL, "consented" boolean NOT NULL, "consented_at" timestamp(6), "ip_address" character varying(45), "user_agent" text, "withdrawn_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_b4b0bf56cf"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_gdpr_consents_on_user_id" ON "gdpr_consents" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_gdpr_consents_on_user_consent_version" ON "gdpr_consents" ("user_id", "consent_type", "version") /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "data_deletion_requests" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "request_type" character varying NOT NULL, "status" character varying DEFAULT 'pending', "requested_at" timestamp(6) DEFAULT CURRENT_TIMESTAMP, "completed_at" timestamp(6), "export_file_url" character varying(500), "rejection_reason" text, "notes" text, "processed_by_id" uuid, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_c77a7a28b8"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_658b45fbe9"
+FOREIGN KEY ("processed_by_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_data_deletion_requests_on_user_id" ON "data_deletion_requests" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_data_deletion_requests_on_processed_by_id" ON "data_deletion_requests" ("processed_by_id") /*application='HandifyRails'*/[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "audit_logs" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid, "admin_id" uuid, "action_type" character varying NOT NULL, "table_name" character varying(100), "record_id" uuid, "ip_address" character varying(45), "user_agent" text, "changes" jsonb, "reason" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_1f26bc34ae"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_80894d3a2e"
+FOREIGN KEY ("admin_id")
+  REFERENCES "users" ("id")
+) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_audit_logs_on_user_id" ON "audit_logs" ("user_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_audit_logs_on_admin_id" ON "audit_logs" ("admin_id") /*application='HandifyRails'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "data_breach_logs" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "breach_type" character varying NOT NULL, "severity" character varying NOT NULL, "affected_users_count" integer, "affected_data_types" jsonb, "description" text NOT NULL, "discovered_at" timestamp(6) NOT NULL, "reported_to_authority_at" timestamp(6), "users_notified_at" timestamp(6), "mitigation_actions" text, "status" character varying DEFAULT 'discovered', "resolved_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "encryption_keys" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "key_name" character varying(100) NOT NULL, "key_version" integer DEFAULT 1 NOT NULL, "algorithm" character varying(50) NOT NULL, "is_active" boolean DEFAULT TRUE, "rotated_at" timestamp(6), "expires_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_encryption_keys_on_key_name" ON "encryption_keys" ("key_name") /*application='HandifyRails'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "data_processing_agreements" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "processor_name" character varying(200) NOT NULL, "processor_type" character varying NOT NULL, "dpa_url" character varying(500), "privacy_policy_url" character varying(500), "data_transferred" jsonb, "is_active" boolean DEFAULT TRUE, "signed_at" timestamp(6), "expires_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251126210857') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HandifyRails'*/[0m
+Migrating to CreateTaskerProfileCategories (20251127172227)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[35m (14.0ms)[0m  [1m[35mCREATE TABLE "tasker_profile_categories" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "tasker_profile_id" uuid NOT NULL, "category_id" uuid NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='HandifyRails'*/[0m
+  [1m[35m (3.7ms)[0m  [1m[35mALTER TABLE "tasker_profile_categories" ADD CONSTRAINT "fk_rails_6160fb0a9f"
+FOREIGN KEY ("tasker_profile_id")
+  REFERENCES "tasker_profiles" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "tasker_profile_categories" ADD CONSTRAINT "fk_rails_ca3f3ad698"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+ /*application='HandifyRails'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_tasker_profile_categories_unique" ON "tasker_profile_categories" ("tasker_profile_id", "category_id") /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251127172227') RETURNING "version" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(8526977183608604175) /*application='HandifyRails'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+Started POST "/users" for ::1 at 2025-12-14 12:42:43 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+Processing by Users::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Tibrea", "last_name"=>"Andrew", "user_type"=>"customer"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Tibrea", "last_name"=>"Andrew", "user_type"=>"customer"}}}
+[31mUnpermitted parameters: :first_name, :last_name, :user_type. Context: { controller: Users::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000000137390480>, params: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Tibrea", "last_name"=>"Andrew", "user_type"=>"customer"}, "controller"=>"users/registrations", "action"=>"create", "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Tibrea", "last_name"=>"Andrew", "user_type"=>"customer"}}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Exists? (5.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'andreitibrea00+1@gmail.com' LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'andreitibrea00+1@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+Completed 422 Unprocessable Content in 675ms (Views: 0.2ms | ActiveRecord: 24.4ms (2 queries, 1 cached) | GC: 2.4ms)
+
+
+Started POST "/users" for ::1 at 2025-12-14 12:42:52 +0200
+Processing by Users::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Tibrea", "last_name"=>"Andrew", "user_type"=>"customer"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Tibrea", "last_name"=>"Andrew", "user_type"=>"customer"}}}
+[31mUnpermitted parameters: :first_name, :last_name, :user_type. Context: { controller: Users::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00000001373d5788>, params: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Tibrea", "last_name"=>"Andrew", "user_type"=>"customer"}, "controller"=>"users/registrations", "action"=>"create", "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Tibrea", "last_name"=>"Andrew", "user_type"=>"customer"}}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'andreitibrea00+1@gmail.com' LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'andreitibrea00+1@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+Completed 422 Unprocessable Content in 216ms (Views: 0.0ms | ActiveRecord: 1.5ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-12-14 12:58:52 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+Processing by Users::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Andrei", "last_name"=>"Tibrea", "user_type"=>"customer"}, "registration"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "first_name"=>"Andrei", "last_name"=>"Tibrea", "user_type"=>"customer"}}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Exists? (3.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'andreitibrea00+2@gmail.com' LIMIT 1 /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'andreitibrea00+2@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mUser Create (7.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "phone", "first_name", "last_name", "user_type", "profile_image_url", "date_of_birth", "id_verified", "email_verified", "phone_verified", "status", "data_retention_until", "anonymized", "anonymized_at") VALUES ('andreitibrea00+2@gmail.com', '$2a$12$yE3BoS1GS5jWvrjbJo8NaulEOgWcTOr0LLQk9a7916TgsOzMSYW4i', NULL, NULL, NULL, '2025-12-14 10:58:52.967396', '2025-12-14 10:58:52.967396', NULL, 'Andrei', 'Tibrea', 'customer', NULL, NULL, FALSE, FALSE, FALSE, 'active', NULL, FALSE, NULL) RETURNING "id", "last_active_at" /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*action='create',application='HandifyRails',controller='registrations'*/[0m
+  ↳ app/controllers/users/registrations_controller.rb:10:in `create'
+Completed 200 OK in 253ms (Views: 0.1ms | ActiveRecord: 17.8ms (3 queries, 1 cached) | GC: 5.6ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 13:08:19 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 13:08:19 +0200
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 0.6ms | ActiveRecord: 1.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mCategory Load (13.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 15ms (Views: -0.9ms | ActiveRecord: 29.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 13:08:26 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 13:08:26 +0200
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 13:08:34 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 13:08:34 +0200
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 13:08:40 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 13:08:40 +0200
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+Completed 401 Unauthorized in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 13:08:44 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 13:08:44 +0200
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 14:21:13 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 14:21:13 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/categories"):
+  
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 27.4ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 14:22:05 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 14:22:05 +0200
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 2.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.2ms)
+
+
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+  [1m[36mCategory Load (2.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 14ms (Views: 1.4ms | ActiveRecord: 6.2ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (3.0ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Cleaning', 'cleaning', 'Professional cleaning services for homes and offices', 'cleaning', NULL, 80.0, TRUE, 1, '2025-12-14 14:40:01.453522', '2025-12-14 14:40:01.453522') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'assembly' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'assembly' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Assembly', 'assembly', 'Furniture assembly and installation services', 'build', NULL, 70.0, TRUE, 2, '2025-12-14 14:40:01.459616', '2025-12-14 14:40:01.459616') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'moving' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'moving' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Moving', 'moving', 'Help with moving and heavy lifting', 'local_shipping', NULL, 90.0, TRUE, 3, '2025-12-14 14:40:01.462007', '2025-12-14 14:40:01.462007') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'handyman' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'handyman' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Handyman', 'handyman', 'General repairs and home maintenance', 'handyman', NULL, 85.0, TRUE, 4, '2025-12-14 14:40:01.464255', '2025-12-14 14:40:01.464255') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'mounting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'mounting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Mounting', 'mounting', 'TV mounting and wall installations', 'tv', NULL, 75.0, TRUE, 5, '2025-12-14 14:40:01.466452', '2025-12-14 14:40:01.466452') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'delivery' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'delivery' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Delivery', 'delivery', 'Pickup and delivery services', 'delivery', NULL, 60.0, TRUE, 6, '2025-12-14 14:40:01.473677', '2025-12-14 14:40:01.473677') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'yard-work' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'yard-work' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Yard Work', 'yard-work', 'Outdoor and garden maintenance', 'grass', NULL, 70.0, TRUE, 7, '2025-12-14 14:40:01.476799', '2025-12-14 14:40:01.476799') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Painting', 'painting', 'Interior and exterior painting services', 'format_paint', NULL, 100.0, TRUE, 8, '2025-12-14 14:40:01.479786', '2025-12-14 14:40:01.479786') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'electrical' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'electrical' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Electrical', 'electrical', 'Electrical repairs and installations', 'electrical_services', NULL, 120.0, TRUE, 9, '2025-12-14 14:40:01.483056', '2025-12-14 14:40:01.483056') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'plumbing' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'plumbing' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Plumbing', 'plumbing', 'Plumbing repairs and installations', 'plumbing', NULL, 110.0, TRUE, 10, '2025-12-14 14:40:01.485136', '2025-12-14 14:40:01.485136') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'personal-assistant' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'personal-assistant' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Personal Assistant', 'personal-assistant', 'Help with errands and personal tasks', 'person', NULL, 65.0, TRUE, 11, '2025-12-14 14:40:01.487153', '2025-12-14 14:40:01.487153') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'event-help' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'event-help' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Event Help', 'event-help', 'Assistance for events and parties', 'celebration', NULL, 75.0, TRUE, 12, '2025-12-14 14:40:01.489343', '2025-12-14 14:40:01.489343') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "categories" WHERE "categories"."parent_id" IS NULL /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'home-cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'home-cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.4ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Home Cleaning', 'home-cleaning', 'Standard home cleaning service', 'home', '6f7e3828-681c-42d0-8416-1759b2ee2768', 80.0, TRUE, 1, '2025-12-14 14:40:01.497426', '2025-12-14 14:40:01.497426') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'deep-cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'deep-cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Deep Cleaning', 'deep-cleaning', 'Thorough deep cleaning of entire home', 'cleaning_services', '6f7e3828-681c-42d0-8416-1759b2ee2768', 100.0, TRUE, 2, '2025-12-14 14:40:01.503105', '2025-12-14 14:40:01.503105') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'move-in-move-out-cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'move-in-move-out-cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Move-in/Move-out Cleaning', 'move-in-move-out-cleaning', 'Cleaning for moving situations', 'door_front', '6f7e3828-681c-42d0-8416-1759b2ee2768', 120.0, TRUE, 3, '2025-12-14 14:40:01.505788', '2025-12-14 14:40:01.505788') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'office-cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'office-cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Office Cleaning', 'office-cleaning', 'Commercial office cleaning', 'business', '6f7e3828-681c-42d0-8416-1759b2ee2768', 90.0, TRUE, 4, '2025-12-14 14:40:01.508748', '2025-12-14 14:40:01.508748') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'carpet-cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'carpet-cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Carpet Cleaning', 'carpet-cleaning', 'Professional carpet and rug cleaning', 'texture', '6f7e3828-681c-42d0-8416-1759b2ee2768', 85.0, TRUE, 5, '2025-12-14 14:40:01.511564', '2025-12-14 14:40:01.511564') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'assembly' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'furniture-assembly' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'furniture-assembly' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Furniture Assembly', 'furniture-assembly', 'Assemble furniture from IKEA and other stores', 'chair', '3ca7a442-e0ba-42d0-8dc1-a9bf42d533a3', 70.0, TRUE, 1, '2025-12-14 14:40:01.514298', '2025-12-14 14:40:01.514298') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'assembly' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'shelf-mounting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'shelf-mounting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Shelf Mounting', 'shelf-mounting', 'Install shelves and storage systems', 'shelves', '3ca7a442-e0ba-42d0-8dc1-a9bf42d533a3', 65.0, TRUE, 2, '2025-12-14 14:40:01.517544', '2025-12-14 14:40:01.517544') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'assembly' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'exercise-equipment' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'exercise-equipment' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Exercise Equipment', 'exercise-equipment', 'Assemble gym and exercise equipment', 'fitness_center', '3ca7a442-e0ba-42d0-8dc1-a9bf42d533a3', 80.0, TRUE, 3, '2025-12-14 14:40:01.520252', '2025-12-14 14:40:01.520252') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'assembly' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'outdoor-furniture' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'outdoor-furniture' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Outdoor Furniture', 'outdoor-furniture', 'Assemble patio and garden furniture', 'deck', '3ca7a442-e0ba-42d0-8dc1-a9bf42d533a3', 75.0, TRUE, 4, '2025-12-14 14:40:01.522963', '2025-12-14 14:40:01.522963') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'moving' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'help-moving' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'help-moving' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Help Moving', 'help-moving', 'Assistance with moving items', 'move', '7adc9040-8ad3-4c2b-a19b-751223ada2d9', 90.0, TRUE, 1, '2025-12-14 14:40:01.528154', '2025-12-14 14:40:01.528154') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'moving' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'heavy-lifting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'heavy-lifting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Heavy Lifting', 'heavy-lifting', 'Moving heavy furniture and appliances', 'fitness_center', '7adc9040-8ad3-4c2b-a19b-751223ada2d9', 100.0, TRUE, 2, '2025-12-14 14:40:01.530646', '2025-12-14 14:40:01.530646') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'moving' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'packing-services' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'packing-services' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Packing Services', 'packing-services', 'Help packing belongings for move', 'inventory', '7adc9040-8ad3-4c2b-a19b-751223ada2d9', 70.0, TRUE, 3, '2025-12-14 14:40:01.533928', '2025-12-14 14:40:01.533928') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'moving' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'storage-help' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'storage-help' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Storage Help', 'storage-help', 'Help organizing storage units', 'warehouse', '7adc9040-8ad3-4c2b-a19b-751223ada2d9', 75.0, TRUE, 4, '2025-12-14 14:40:01.536992', '2025-12-14 14:40:01.536992') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'handyman' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'general-repairs' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'general-repairs' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('General Repairs', 'general-repairs', 'Minor home repairs and fixes', 'build', '2a9ea149-39b5-468b-8315-962a229da099', 85.0, TRUE, 1, '2025-12-14 14:40:01.540052', '2025-12-14 14:40:01.540052') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'handyman' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'drywall-repair' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'drywall-repair' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Drywall Repair', 'drywall-repair', 'Patch and repair drywall', 'dashboard', '2a9ea149-39b5-468b-8315-962a229da099', 90.0, TRUE, 2, '2025-12-14 14:40:01.542770', '2025-12-14 14:40:01.542770') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'handyman' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'door-repairs' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'door-repairs' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.6ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Door Repairs', 'door-repairs', 'Fix or replace doors and locks', 'door_sliding', '2a9ea149-39b5-468b-8315-962a229da099', 80.0, TRUE, 3, '2025-12-14 14:40:01.545663', '2025-12-14 14:40:01.545663') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'handyman' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'window-repairs' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'window-repairs' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Window Repairs', 'window-repairs', 'Window repair and maintenance', 'window', '2a9ea149-39b5-468b-8315-962a229da099', 85.0, TRUE, 4, '2025-12-14 14:40:01.548705', '2025-12-14 14:40:01.548705') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'handyman' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'caulking' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'caulking' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Caulking', 'caulking', 'Bathroom and kitchen caulking', 'opacity', '2a9ea149-39b5-468b-8315-962a229da099', 60.0, TRUE, 5, '2025-12-14 14:40:01.553293', '2025-12-14 14:40:01.553293') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'mounting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'tv-mounting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'tv-mounting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('TV Mounting', 'tv-mounting', 'Mount TVs on walls', 'tv', '8fe0fccc-76b1-4de4-9714-acffaccda1ff', 75.0, TRUE, 1, '2025-12-14 14:40:01.556460', '2025-12-14 14:40:01.556460') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'mounting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'mirror-mounting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'mirror-mounting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Mirror Mounting', 'mirror-mounting', 'Install mirrors and heavy artwork', 'panorama', '8fe0fccc-76b1-4de4-9714-acffaccda1ff', 70.0, TRUE, 2, '2025-12-14 14:40:01.560111', '2025-12-14 14:40:01.560111') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'mounting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'curtain-installation' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'curtain-installation' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Curtain Installation', 'curtain-installation', 'Install curtain rods and blinds', 'blinds', '8fe0fccc-76b1-4de4-9714-acffaccda1ff', 65.0, TRUE, 3, '2025-12-14 14:40:01.563600', '2025-12-14 14:40:01.563600') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'mounting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'smart-home-installation' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'smart-home-installation' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Smart Home Installation', 'smart-home-installation', 'Install smart home devices', 'smart_home', '8fe0fccc-76b1-4de4-9714-acffaccda1ff', 90.0, TRUE, 4, '2025-12-14 14:40:01.566554', '2025-12-14 14:40:01.566554') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'delivery' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'pickup-delivery' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'pickup-delivery' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.8ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Pickup & Delivery', 'pickup-delivery', 'Pickup and deliver items', 'local_shipping', '16ec7c2c-9113-44ae-9736-d0522c62a953', 60.0, TRUE, 1, '2025-12-14 14:40:01.569425', '2025-12-14 14:40:01.569425') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'delivery' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'grocery-shopping' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'grocery-shopping' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Grocery Shopping', 'grocery-shopping', 'Shop for groceries and deliver', 'shopping_cart', '16ec7c2c-9113-44ae-9736-d0522c62a953', 55.0, TRUE, 2, '2025-12-14 14:40:01.573317', '2025-12-14 14:40:01.573317') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'delivery' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'store-pickup' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'store-pickup' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Store Pickup', 'store-pickup', 'Pick up orders from stores', 'store', '16ec7c2c-9113-44ae-9736-d0522c62a953', 50.0, TRUE, 3, '2025-12-14 14:40:01.575961', '2025-12-14 14:40:01.575961') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'delivery' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'donation-dropoff' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'donation-dropoff' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Donation Dropoff', 'donation-dropoff', 'Deliver items to donation centers', 'volunteer_activism', '16ec7c2c-9113-44ae-9736-d0522c62a953', 45.0, TRUE, 4, '2025-12-14 14:40:01.578565', '2025-12-14 14:40:01.578565') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'yard-work' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'lawn-mowing' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'lawn-mowing' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.5ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Lawn Mowing', 'lawn-mowing', 'Regular lawn mowing service', 'grass', 'f3217eb7-1899-40ae-9869-39b2e624b61f', 60.0, TRUE, 1, '2025-12-14 14:40:01.582104', '2025-12-14 14:40:01.582104') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'yard-work' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'gardening' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'gardening' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Gardening', 'gardening', 'Plant care and garden maintenance', 'local_florist', 'f3217eb7-1899-40ae-9869-39b2e624b61f', 70.0, TRUE, 2, '2025-12-14 14:40:01.585770', '2025-12-14 14:40:01.585770') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'yard-work' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'leaf-removal' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'leaf-removal' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Leaf Removal', 'leaf-removal', 'Seasonal leaf cleanup', 'eco', 'f3217eb7-1899-40ae-9869-39b2e624b61f', 55.0, TRUE, 3, '2025-12-14 14:40:01.588932', '2025-12-14 14:40:01.588932') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'yard-work' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'snow-removal' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'snow-removal' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Snow Removal', 'snow-removal', 'Snow shoveling and removal', 'ac_unit', 'f3217eb7-1899-40ae-9869-39b2e624b61f', 80.0, TRUE, 4, '2025-12-14 14:40:01.592018', '2025-12-14 14:40:01.592018') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'yard-work' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'hedge-trimming' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'hedge-trimming' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Hedge Trimming', 'hedge-trimming', 'Trim hedges and bushes', 'content_cut', 'f3217eb7-1899-40ae-9869-39b2e624b61f', 65.0, TRUE, 5, '2025-12-14 14:40:01.595036', '2025-12-14 14:40:01.595036') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'interior-painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'interior-painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Interior Painting', 'interior-painting', 'Paint interior walls and ceilings', 'format_paint', '348f7703-3e17-4982-9d53-a70b8faf761a', 100.0, TRUE, 1, '2025-12-14 14:40:01.598167', '2025-12-14 14:40:01.598167') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'exterior-painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'exterior-painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Exterior Painting', 'exterior-painting', 'Paint house exterior', 'house', '348f7703-3e17-4982-9d53-a70b8faf761a', 120.0, TRUE, 2, '2025-12-14 14:40:01.601012', '2025-12-14 14:40:01.601012') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'cabinet-painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'cabinet-painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Cabinet Painting', 'cabinet-painting', 'Refinish and paint cabinets', 'kitchen', '348f7703-3e17-4982-9d53-a70b8faf761a', 110.0, TRUE, 3, '2025-12-14 14:40:01.603720', '2025-12-14 14:40:01.603720') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'touch-up-painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'touch-up-painting' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Touch-up Painting', 'touch-up-painting', 'Small paint touch-ups and fixes', 'brush', '348f7703-3e17-4982-9d53-a70b8faf761a', 70.0, TRUE, 4, '2025-12-14 14:40:01.607309', '2025-12-14 14:40:01.607309') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'electrical' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'light-installation' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'light-installation' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Light Installation', 'light-installation', 'Install light fixtures', 'light', '15fcfd2b-62db-45ad-a02e-0ca419e47543', 100.0, TRUE, 1, '2025-12-14 14:40:01.610859', '2025-12-14 14:40:01.610859') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'electrical' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'outlet-installation' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'outlet-installation' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Outlet Installation', 'outlet-installation', 'Install or replace outlets', 'power', '15fcfd2b-62db-45ad-a02e-0ca419e47543', 110.0, TRUE, 2, '2025-12-14 14:40:01.614179', '2025-12-14 14:40:01.614179') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'electrical' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'ceiling-fan-installation' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'ceiling-fan-installation' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Ceiling Fan Installation', 'ceiling-fan-installation', 'Install ceiling fans', 'air', '15fcfd2b-62db-45ad-a02e-0ca419e47543', 120.0, TRUE, 3, '2025-12-14 14:40:01.617378', '2025-12-14 14:40:01.617378') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'electrical' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'switch-replacement' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'switch-replacement' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Switch Replacement', 'switch-replacement', 'Replace light switches', 'toggle_on', '15fcfd2b-62db-45ad-a02e-0ca419e47543', 90.0, TRUE, 4, '2025-12-14 14:40:01.620217', '2025-12-14 14:40:01.620217') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'plumbing' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'faucet-installation' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'faucet-installation' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (2.8ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Faucet Installation', 'faucet-installation', 'Install or replace faucets', 'water_drop', 'c752a67b-064e-4cb3-a37d-d932d9316066', 100.0, TRUE, 1, '2025-12-14 14:40:01.623425', '2025-12-14 14:40:01.623425') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'plumbing' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'toilet-repair' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'toilet-repair' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Toilet Repair', 'toilet-repair', 'Fix or replace toilets', 'wc', 'c752a67b-064e-4cb3-a37d-d932d9316066', 110.0, TRUE, 2, '2025-12-14 14:40:01.628780', '2025-12-14 14:40:01.628780') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'plumbing' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'drain-cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'drain-cleaning' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Drain Cleaning', 'drain-cleaning', 'Clear clogged drains', 'plumbing', 'c752a67b-064e-4cb3-a37d-d932d9316066', 90.0, TRUE, 3, '2025-12-14 14:40:01.631527', '2025-12-14 14:40:01.631527') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'plumbing' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'water-heater' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'water-heater' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Water Heater', 'water-heater', 'Water heater maintenance', 'hot_tub', 'c752a67b-064e-4cb3-a37d-d932d9316066', 130.0, TRUE, 4, '2025-12-14 14:40:01.634999', '2025-12-14 14:40:01.634999') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'personal-assistant' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'errand-running' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'errand-running' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Errand Running', 'errand-running', 'Run various errands', 'directions_run', '861fa7d6-0dfa-40a3-9a87-d63e4f139266', 60.0, TRUE, 1, '2025-12-14 14:40:01.638517', '2025-12-14 14:40:01.638517') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'personal-assistant' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'waiting-services' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'waiting-services' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Waiting Services', 'waiting-services', 'Wait for deliveries or services', 'schedule', '861fa7d6-0dfa-40a3-9a87-d63e4f139266', 50.0, TRUE, 2, '2025-12-14 14:40:01.642345', '2025-12-14 14:40:01.642345') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'personal-assistant' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'organization' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'organization' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Organization', 'organization', 'Help organizing spaces', 'folder', '861fa7d6-0dfa-40a3-9a87-d63e4f139266', 70.0, TRUE, 3, '2025-12-14 14:40:01.645801', '2025-12-14 14:40:01.645801') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'personal-assistant' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'pet-care' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'pet-care' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Pet Care', 'pet-care', 'Pet sitting and dog walking', 'pets', '861fa7d6-0dfa-40a3-9a87-d63e4f139266', 55.0, TRUE, 4, '2025-12-14 14:40:01.648745', '2025-12-14 14:40:01.648745') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'event-help' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'event-setup' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'event-setup' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Event Setup', 'event-setup', 'Set up for parties and events', 'event', '35ca37e6-f212-4ec2-8172-d6210344ce1d', 80.0, TRUE, 1, '2025-12-14 14:40:01.652092', '2025-12-14 14:40:01.652092') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'event-help' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'event-cleanup' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'event-cleanup' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Event Cleanup', 'event-cleanup', 'Clean up after events', 'cleaning_services', '35ca37e6-f212-4ec2-8172-d6210344ce1d', 75.0, TRUE, 2, '2025-12-14 14:40:01.654913', '2025-12-14 14:40:01.654913') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'event-help' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'serving-help' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'serving-help' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Serving Help', 'serving-help', 'Help serving at events', 'room_service', '35ca37e6-f212-4ec2-8172-d6210344ce1d', 70.0, TRUE, 3, '2025-12-14 14:40:01.658428', '2025-12-14 14:40:01.658428') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'event-help' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."slug" = 'bartending' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='HandifyRails'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."slug" = 'bartending' LIMIT 1 /*application='HandifyRails'*/[0m
+  [1m[36mCategory Create (0.4ms)[0m  [1m[32mINSERT INTO "categories" ("name", "slug", "description", "icon_url", "parent_id", "suggested_hourly_rate", "is_active", "sort_order", "created_at", "updated_at") VALUES ('Bartending', 'bartending', 'Bartending services', 'local_bar', '35ca37e6-f212-4ec2-8172-d6210344ce1d', 90.0, TRUE, 4, '2025-12-14 14:40:01.662780', '2025-12-14 14:40:01.662780') RETURNING "id" /*application='HandifyRails'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*application='HandifyRails'*/[0m
+  [1m[36mCategory Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "categories" WHERE "categories"."parent_id" IS NOT NULL /*application='HandifyRails'*/[0m
+  [1m[36mCategory Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "categories" /*application='HandifyRails'*/[0m
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:41:02 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:41:02 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HandifyRails'*/[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/addresses"):
+  
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 12ms (Views: 4.6ms | ActiveRecord: 34.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:45:12 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:45:12 +0200
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+  [1m[36mCategory Load (5.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 33ms (Views: 21.2ms | ActiveRecord: 5.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 5.3ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:45:18 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:45:18 +0200
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:45:27 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:45:27 +0200
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:45:37 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:45:37 +0200
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mCategory Load (1.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:45:44 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:45:44 +0200
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:45:57 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:45:57 +0200
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+  [1m[36mCategory Load (1.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:46:04 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:46:04 +0200
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:46:47 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:46:47 +0200
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+  [1m[36mCategory Load (1.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 8ms (Views: 4.4ms | ActiveRecord: 1.7ms (1 query, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:48:57 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:48:57 +0200
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+  [1m[36mCategory Load (1.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 6ms (Views: 3.1ms | ActiveRecord: 1.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/addresses" for ::1 at 2025-12-14 16:49:53 +0200
+Processing by Api::V1::AddressesController#create as JSON
+  Parameters: {"address"=>{"street_address"=>"Fagului 86A", "city"=>"Cluj-Napoca", "state"=>"Cluj", "postal_code"=>"400483", "country"=>"Romania", "is_default"=>true}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/addresses" for ::1 at 2025-12-14 16:49:56 +0200
+Processing by Api::V1::AddressesController#create as JSON
+  Parameters: {"address"=>{"street_address"=>"Fagului 86A", "city"=>"Cluj-Napoca", "state"=>"Cluj", "postal_code"=>"400483", "country"=>"Romania", "is_default"=>true}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:50:12 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:50:12 +0200
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mCategory Load (1.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/addresses" for ::1 at 2025-12-14 16:50:33 +0200
+Processing by Api::V1::AddressesController#create as JSON
+  Parameters: {"address"=>{"street_address"=>"Fagului 86", "city"=>"Cluj-Napoca", "state"=>"Cluj", "postal_code"=>"400483", "country"=>"Romania", "is_default"=>true}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.1ms)
+
+
+Started POST "/api/v1/addresses" for ::1 at 2025-12-14 16:50:38 +0200
+Processing by Api::V1::AddressesController#create as JSON
+  Parameters: {"address"=>{"street_address"=>"Fagului 86", "city"=>"Cluj-Napoca", "state"=>"Cluj", "postal_code"=>"400483", "country"=>"Romania", "is_default"=>true}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/addresses" for ::1 at 2025-12-14 16:50:55 +0200
+Processing by Api::V1::AddressesController#create as JSON
+  Parameters: {"address"=>{"street_address"=>"Fagului 86", "city"=>"Cluj-Napoca", "state"=>"Cluj", "postal_code"=>"400483", "country"=>"Romania", "is_default"=>true}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:51:01 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:51:01 +0200
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+  [1m[36mCategory Load (1.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 6ms (Views: 4.1ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 16:52:43 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 16:52:43 +0200
+Processing by Api::V1::CategoriesController#index as JSON
+  Parameters: {"category"=>{}}
+Processing by Api::V1::AddressesController#index as JSON
+  Parameters: {"address"=>{}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mCategory Load (2.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 7ms (Views: 4.1ms | ActiveRecord: 2.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/addresses" for ::1 at 2025-12-14 16:52:55 +0200
+Processing by Api::V1::AddressesController#create as JSON
+  Parameters: {"address"=>{"street_address"=>"Fdsfsdf", "city"=>"Dad dads", "state"=>"Dsadasd", "postal_code"=>"400483", "country"=>"Romania", "is_default"=>true}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 17:57:47 +0200
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 17:57:47 +0200
+Processing by Api::V1::CategoriesController#index as JSON
+Processing by Api::V1::AddressesController#index as JSON
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mCategory Load (54.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 64ms (Views: -3.0ms | ActiveRecord: 65.0ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started POST "/api/v1/addresses" for ::1 at 2025-12-14 17:59:14 +0200
+Processing by Api::V1::AddressesController#create as JSON
+  Parameters: {"address"=>{"street_address"=>"Fdsfdsfqfsdfds", "city"=>"Fdsfds", "state"=>"Dfsfds", "postal_code"=>"fsdfds", "country"=>"Romania", "is_default"=>true}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/addresses" for ::1 at 2025-12-14 18:36:06 +0200
+Started GET "/api/v1/categories" for ::1 at 2025-12-14 18:36:06 +0200
+Processing by Api::V1::CategoriesController#index as JSON
+Processing by Api::V1::AddressesController#index as JSON
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mCategory Load (46.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."is_active" = TRUE ORDER BY "categories"."sort_order" ASC, "categories"."name" ASC LIMIT 25 OFFSET 0 /*action='index',application='HandifyRails',controller='categories'*/[0m
+  ↳ app/controllers/api/v1/base_controller.rb:13:in `index'
+Completed 200 OK in 56ms (Views: 1.0ms | ActiveRecord: 53.5ms (1 query, 0 cached) | GC: 0.1ms)
+
+

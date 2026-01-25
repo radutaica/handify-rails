@@ -28,5 +28,8 @@ module HandifyRails
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # Configure null session store for API-only mode to prevent session errors
+    config.session_store :null_store
   end
 end
