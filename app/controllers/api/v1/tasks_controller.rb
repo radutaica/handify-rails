@@ -3,6 +3,21 @@ module Api
     class TasksController < BaseController
       skip_before_action :authenticate_user!, only: [:index, :show]
 
+      # Override create to set customer_id from current_user
+      def create
+        task = Task.new(resource_params)
+        task.customer = current_user
+        task.status ||= 'open'
+        task.urgency ||= 'medium'
+        task.booking_type ||= 'open_bidding'
+
+        if task.save
+          render json: task, status: :created
+        else
+          render json: { errors: task.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def resource_params

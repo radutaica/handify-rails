@@ -1,6 +1,8 @@
 class TaskerProfile < ApplicationRecord
   # Associations
   belongs_to :user
+  has_many :tasker_profile_categories, dependent: :destroy
+  has_many :categories, through: :tasker_profile_categories
 
   # Enums
   enum :background_check_status, {

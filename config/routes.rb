@@ -20,7 +20,11 @@ Rails.application.routes.draw do
       resources :addresses, only: [:index, :show, :create, :update, :destroy]
 
       # User profiles
-      resources :tasker_profiles, only: [:index, :show, :create, :update, :destroy]
+      resources :tasker_profiles, only: [:index, :show, :create, :update, :destroy] do
+        collection do
+          post :onboarding
+        end
+      end
 
       # Tasks and bidding
       resources :tasks, only: [:index, :show, :create, :update, :destroy] do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_26_210857) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_27_172227) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -293,6 +293,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_26_210857) do
     t.index ["tasker_id"], name: "index_tasker_availability_on_tasker_id"
   end
 
+  create_table "tasker_profile_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "tasker_profile_id", null: false
+    t.uuid "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tasker_profile_id", "category_id"], name: "index_tasker_profile_categories_unique", unique: true
+  end
+
   create_table "tasker_profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.text "bio"
@@ -435,6 +443,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_26_210857) do
   add_foreign_key "reviews", "users", column: "reviewer_id"
   add_foreign_key "tasker_availability", "tasks"
   add_foreign_key "tasker_availability", "users", column: "tasker_id"
+  add_foreign_key "tasker_profile_categories", "categories"
+  add_foreign_key "tasker_profile_categories", "tasker_profiles"
   add_foreign_key "tasker_profiles", "users"
   add_foreign_key "tasks", "addresses"
   add_foreign_key "tasks", "categories"
