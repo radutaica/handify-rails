@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # Current user
-      resource :me, only: [:show], controller: 'me'
+      resource :me, only: [:show, :update], controller: 'me'
 
       # Core resources
       resources :categories, only: [:index, :show, :create, :update, :destroy]
@@ -68,6 +68,10 @@ Rails.application.routes.draw do
 
       # Messaging
       resources :messages, only: [:index, :show, :create] do
+        collection do
+          get :conversations
+          post :mark_all_as_read
+        end
         member do
           post :mark_as_read
         end

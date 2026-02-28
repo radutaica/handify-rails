@@ -20,6 +20,7 @@ class TaskerProfileSerializer
       experience_years: @profile.experience_years,
       avg_rating: @profile.avg_rating,
       total_tasks_completed: @profile.total_tasks_completed,
+      total_reviews: user.received_reviews.count,
       is_active: @profile.is_active,
       is_verified: @profile.background_check_status == 'approved',
       allows_instant_booking: @profile.allows_instant_booking,

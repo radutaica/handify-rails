@@ -3,7 +3,7 @@ module Api
     class UserProfilesController < BaseController
       def complete
         profile_params = params.require(:profileData).permit(
-          :photo_url, :user_type
+          :photo_url, :user_type, :preferred_language, :location_address, :location_city, :location_zip
         )
 
         # Map photo_url to profile_image_url
@@ -14,7 +14,7 @@ module Api
         if update_params.empty? || current_user.update(update_params)
           render json: {
             status: { code: 200, message: 'Profile updated successfully.' },
-            data: UserSerializer.new(current_user).serializable_hash
+            data: CurrentUserSerializer.new(current_user).serializable_hash
           }, status: :ok
         else
           render json: {

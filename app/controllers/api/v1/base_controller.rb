@@ -2,6 +2,7 @@ module Api
   module V1
     class BaseController < ApplicationController
       before_action :authenticate_user!
+      before_action :touch_last_active
       before_action :set_resource, only: [:show, :update, :destroy]
 
       # GET /api/v1/resources
@@ -62,6 +63,13 @@ module Api
       def resource_params
         # Override this method in child controllers
         params.require(controller_name.singularize.to_sym).permit!
+      end
+
+      def touch_last_active
+        return unless current_user
+        return if current_user.last_active_at && current_user.last_active_at > 1.minute.ago
+
+        current_user.update_column(:last_active_at, Time.current)
       end
 
       def apply_pagination(resources)
