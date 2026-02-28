@@ -3,6 +3,15 @@ module Api
     class ReviewsController < BaseController
       skip_before_action :authenticate_user!, only: [:index, :show]
 
+      def index
+        resources = Review.includes(:reviewer)
+        resources = apply_filters(resources)
+        resources = resources.recent
+        resources = apply_pagination(resources)
+
+        render json: ReviewSerializer.serialize_collection(resources), status: :ok
+      end
+
       private
 
       def resource_params

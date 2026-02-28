@@ -3,6 +3,14 @@ module Api
     class CategoriesController < BaseController
       skip_before_action :authenticate_user!
 
+      def index
+        resources = resource_class.all
+        resources = apply_filters(resources)
+        resources = apply_pagination(resources)
+
+        render json: CategorySerializer.serialize_collection(resources), status: :ok
+      end
+
       private
 
       def resource_params

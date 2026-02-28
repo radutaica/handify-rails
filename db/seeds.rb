@@ -20,6 +20,7 @@ if File.exist?(csv_file)
       category.name = row['name']
       category.description = row['description']
       category.icon_url = row['icon_name'] # Store icon name, frontend will handle the actual icon
+      category.color = row['color']
       category.suggested_hourly_rate = row['suggested_hourly_rate'].to_d if row['suggested_hourly_rate'].present?
       category.sort_order = row['sort_order'].to_i
       category.is_active = true
@@ -39,6 +40,7 @@ if File.exist?(csv_file)
         category.name = row['name']
         category.description = row['description']
         category.icon_url = row['icon_name']
+        category.color = row['color']
         category.parent = parent
         category.suggested_hourly_rate = row['suggested_hourly_rate'].to_d if row['suggested_hourly_rate'].present?
         category.sort_order = row['sort_order'].to_i

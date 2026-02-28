@@ -37,5 +37,25 @@ class ApplicationController < ActionController::API
     def to_hash
       {}
     end
+
+    def empty?
+      true
+    end
+
+    def keys
+      []
+    end
+
+    def values
+      []
+    end
+
+    def destroy
+      # Do nothing
+    end
+
+    def enabled?
+      false
+    end
   end
 end

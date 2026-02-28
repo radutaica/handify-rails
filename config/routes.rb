@@ -15,8 +15,18 @@ Rails.application.routes.draw do
   # API routes
   namespace :api do
     namespace :v1 do
+      # Current user
+      resource :me, only: [:show], controller: 'me'
+
       # Core resources
       resources :categories, only: [:index, :show, :create, :update, :destroy]
+
+      # User profiles (onboarding completion)
+      resources :user_profiles, only: [] do
+        collection do
+          post :complete
+        end
+      end
       resources :addresses, only: [:index, :show, :create, :update, :destroy]
 
       # User profiles

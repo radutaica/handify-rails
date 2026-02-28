@@ -3,6 +3,31 @@ module Api
     class TaskerProfilesController < BaseController
       skip_before_action :authenticate_user!, only: [:index, :show]
 
+      def index
+        resources = TaskerProfile.includes(:user, :categories)
+        resources = apply_filters(resources)
+        resources = apply_sorting(resources)
+
+        total = resources.count
+        resources = apply_pagination(resources)
+
+        render json: {
+          data: TaskerProfileSerializer.serialize_collection(resources),
+          meta: {
+            total: total,
+            page: (params[:page] || 1).to_i,
+            per_page: [params[:per_page].to_i, 100].min.clamp(1, 100)
+          }
+        }, status: :ok
+      end
+
+      def show
+        profile = TaskerProfile.includes(:user, :categories).find(params[:id])
+        render json: TaskerProfileSerializer.new(profile).serializable_hash, status: :ok
+      rescue ActiveRecord::RecordNotFound
+        render json: { error: 'TaskerProfile not found' }, status: :not_found
+      end
+
       # POST /api/v1/tasker_profiles/onboarding
       def onboarding
         service = TaskerProfiles::OnboardingService.new(current_user, onboarding_params)
@@ -42,7 +67,22 @@ module Api
         resources = resources.verified if params[:verified_only] == 'true'
         resources = resources.instant_booking_available if params[:instant_booking] == 'true'
         resources = resources.with_high_rating if params[:high_rated] == 'true'
+        resources = resources.by_category(params[:category_id]) if params[:category_id].present?
+        resources = resources.with_min_rating(params[:min_rating].to_f) if params[:min_rating].present?
+        resources = resources.with_hourly_rate_range(params[:min_rate], params[:max_rate]) if params[:min_rate].present? || params[:max_rate].present?
+        resources = resources.search(params[:q]) if params[:q].present?
         resources
+      end
+
+      def apply_sorting(resources)
+        case params[:sort]
+        when 'completed_tasks'
+          resources.order(total_tasks_completed: :desc)
+        when 'hourly_rate'
+          resources.order(hourly_rate: :asc)
+        else
+          resources.order(avg_rating: :desc)
+        end
       end
     end
   end

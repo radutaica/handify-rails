@@ -1,7 +1,15 @@
 module Api
   module V1
     class BidsController < BaseController
-      before_action :set_task, only: [:create]
+      before_action :set_task, only: [:index, :create]
+
+      def index
+        bids = @task.bids.includes(tasker: :tasker_profile).order(created_at: :desc)
+        bids = apply_filters(bids)
+        bids = apply_pagination(bids)
+
+        render json: BidSerializer.serialize_collection(bids), status: :ok
+      end
 
       def create
         bid = @task.bids.new(resource_params)
@@ -9,7 +17,8 @@ module Api
 
         if bid.save
           Notification.create_bid_received(@task, bid)
-          render json: bid, status: :created
+          bid = Bid.includes(tasker: :tasker_profile).find(bid.id)
+          render json: BidSerializer.new(bid).serializable_hash, status: :created
         else
           render json: { errors: bid.errors.full_messages }, status: :unprocessable_entity
         end
@@ -21,7 +30,8 @@ module Api
 
         if bid.accept!
           Notification.create_task_assigned(bid.task)
-          render json: bid, status: :ok
+          bid = Bid.includes(tasker: :tasker_profile).find(bid.id)
+          render json: BidSerializer.new(bid).serializable_hash, status: :ok
         else
           render json: { errors: bid.errors.full_messages }, status: :unprocessable_entity
         end
@@ -32,7 +42,8 @@ module Api
         authorize_tasker!(bid)
 
         if bid.withdraw!
-          render json: bid, status: :ok
+          bid = Bid.includes(tasker: :tasker_profile).find(bid.id)
+          render json: BidSerializer.new(bid).serializable_hash, status: :ok
         else
           render json: { errors: bid.errors.full_messages }, status: :unprocessable_entity
         end

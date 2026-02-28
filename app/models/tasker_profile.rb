@@ -24,6 +24,23 @@ class TaskerProfile < ApplicationRecord
   scope :verified, -> { where(background_check_status: 'approved') }
   scope :instant_booking_available, -> { where(allows_instant_booking: true) }
   scope :with_high_rating, -> { where('avg_rating >= ?', 4.0) }
+  scope :by_category, ->(category_id) {
+    joins(:tasker_profile_categories).where(tasker_profile_categories: { category_id: category_id })
+  }
+  scope :with_min_rating, ->(min) { where('avg_rating >= ?', min) }
+  scope :with_hourly_rate_range, ->(min, max) {
+    scope = all
+    scope = scope.where('hourly_rate >= ?', min) if min.present?
+    scope = scope.where('hourly_rate <= ?', max) if max.present?
+    scope
+  }
+  scope :search, ->(query) {
+    q = "%#{query}%"
+    joins(:user)
+      .left_joins(:categories)
+      .where('users.first_name ILIKE :q OR users.last_name ILIKE :q OR tasker_profiles.bio ILIKE :q OR categories.name ILIKE :q', q: q)
+      .distinct
+  }
 
   # Methods
   def update_rating(new_rating)

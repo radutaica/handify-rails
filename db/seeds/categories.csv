@@ -1,64 +1,64 @@
-name,description,icon_name,parent_slug,suggested_hourly_rate,sort_order
-Cleaning,Professional cleaning services for homes and offices,cleaning,,80,1
-Assembly,Furniture assembly and installation services,build,,70,2
-Moving,Help with moving and heavy lifting,local_shipping,,90,3
-Handyman,General repairs and home maintenance,handyman,,85,4
-Mounting,TV mounting and wall installations,tv,,75,5
-Delivery,Pickup and delivery services,delivery,,60,6
-Yard Work,Outdoor and garden maintenance,grass,,70,7
-Painting,Interior and exterior painting services,format_paint,,100,8
-Electrical,Electrical repairs and installations,electrical_services,,120,9
-Plumbing,Plumbing repairs and installations,plumbing,,110,10
-Personal Assistant,Help with errands and personal tasks,person,,65,11
-Event Help,Assistance for events and parties,celebration,,75,12
-Home Cleaning,Standard home cleaning service,home,cleaning,80,1
-Deep Cleaning,Thorough deep cleaning of entire home,cleaning_services,cleaning,100,2
-Move-in/Move-out Cleaning,Cleaning for moving situations,door_front,cleaning,120,3
-Office Cleaning,Commercial office cleaning,business,cleaning,90,4
-Carpet Cleaning,Professional carpet and rug cleaning,texture,cleaning,85,5
-Furniture Assembly,Assemble furniture from IKEA and other stores,chair,assembly,70,1
-Shelf Mounting,Install shelves and storage systems,shelves,assembly,65,2
-Exercise Equipment,Assemble gym and exercise equipment,fitness_center,assembly,80,3
-Outdoor Furniture,Assemble patio and garden furniture,deck,assembly,75,4
-Help Moving,Assistance with moving items,move,moving,90,1
-Heavy Lifting,Moving heavy furniture and appliances,fitness_center,moving,100,2
-Packing Services,Help packing belongings for move,inventory,moving,70,3
-Storage Help,Help organizing storage units,warehouse,moving,75,4
-General Repairs,Minor home repairs and fixes,build,handyman,85,1
-Drywall Repair,Patch and repair drywall,dashboard,handyman,90,2
-Door Repairs,Fix or replace doors and locks,door_sliding,handyman,80,3
-Window Repairs,Window repair and maintenance,window,handyman,85,4
-Caulking,Bathroom and kitchen caulking,opacity,handyman,60,5
-TV Mounting,Mount TVs on walls,tv,mounting,75,1
-Mirror Mounting,Install mirrors and heavy artwork,panorama,mounting,70,2
-Curtain Installation,Install curtain rods and blinds,blinds,mounting,65,3
-Smart Home Installation,Install smart home devices,smart_home,mounting,90,4
-Pickup & Delivery,Pickup and deliver items,local_shipping,delivery,60,1
-Grocery Shopping,Shop for groceries and deliver,shopping_cart,delivery,55,2
-Store Pickup,Pick up orders from stores,store,delivery,50,3
-Donation Dropoff,Deliver items to donation centers,volunteer_activism,delivery,45,4
-Lawn Mowing,Regular lawn mowing service,grass,yard-work,60,1
-Gardening,Plant care and garden maintenance,local_florist,yard-work,70,2
-Leaf Removal,Seasonal leaf cleanup,eco,yard-work,55,3
-Snow Removal,Snow shoveling and removal,ac_unit,yard-work,80,4
-Hedge Trimming,Trim hedges and bushes,content_cut,yard-work,65,5
-Interior Painting,Paint interior walls and ceilings,format_paint,painting,100,1
-Exterior Painting,Paint house exterior,house,painting,120,2
-Cabinet Painting,Refinish and paint cabinets,kitchen,painting,110,3
-Touch-up Painting,Small paint touch-ups and fixes,brush,painting,70,4
-Light Installation,Install light fixtures,light,electrical,100,1
-Outlet Installation,Install or replace outlets,power,electrical,110,2
-Ceiling Fan Installation,Install ceiling fans,air,electrical,120,3
-Switch Replacement,Replace light switches,toggle_on,electrical,90,4
-Faucet Installation,Install or replace faucets,water_drop,plumbing,100,1
-Toilet Repair,Fix or replace toilets,wc,plumbing,110,2
-Drain Cleaning,Clear clogged drains,plumbing,plumbing,90,3
-Water Heater,Water heater maintenance,hot_tub,plumbing,130,4
-Errand Running,Run various errands,directions_run,personal-assistant,60,1
-Waiting Services,Wait for deliveries or services,schedule,personal-assistant,50,2
-Organization,Help organizing spaces,folder,personal-assistant,70,3
-Pet Care,Pet sitting and dog walking,pets,personal-assistant,55,4
-Event Setup,Set up for parties and events,event,event-help,80,1
-Event Cleanup,Clean up after events,cleaning_services,event-help,75,2
-Serving Help,Help serving at events,room_service,event-help,70,3
-Bartending,Bartending services,local_bar,event-help,90,4
+name,description,icon_name,parent_slug,suggested_hourly_rate,sort_order,color
+Cleaning,Professional cleaning services for homes and offices,cleaning,,80,1,#14B8A6
+Assembly,Furniture assembly and installation services,build,,70,2,#F59E0B
+Moving,Help with moving and heavy lifting,local_shipping,,90,3,#A855F7
+Handyman,General repairs and home maintenance,handyman,,85,4,#14B8A6
+Mounting,TV mounting and wall installations,tv,,75,5,#F59E0B
+Delivery,Pickup and delivery services,delivery,,60,6,#A855F7
+Yard Work,Outdoor and garden maintenance,grass,,70,7,#14B8A6
+Painting,Interior and exterior painting services,format_paint,,100,8,#F59E0B
+Electrical,Electrical repairs and installations,electrical_services,,120,9,#A855F7
+Plumbing,Plumbing repairs and installations,plumbing,,110,10,#14B8A6
+Personal Assistant,Help with errands and personal tasks,person,,65,11,#F59E0B
+Event Help,Assistance for events and parties,celebration,,75,12,#A855F7
+Home Cleaning,Standard home cleaning service,home,cleaning,80,1,#14B8A6
+Deep Cleaning,Thorough deep cleaning of entire home,cleaning_services,cleaning,100,2,#F59E0B
+Move-in/Move-out Cleaning,Cleaning for moving situations,door_front,cleaning,120,3,#A855F7
+Office Cleaning,Commercial office cleaning,business,cleaning,90,4,#14B8A6
+Carpet Cleaning,Professional carpet and rug cleaning,texture,cleaning,85,5,#F59E0B
+Furniture Assembly,Assemble furniture from IKEA and other stores,chair,assembly,70,1,#F59E0B
+Shelf Mounting,Install shelves and storage systems,shelves,assembly,65,2,#A855F7
+Exercise Equipment,Assemble gym and exercise equipment,fitness_center,assembly,80,3,#14B8A6
+Outdoor Furniture,Assemble patio and garden furniture,deck,assembly,75,4,#F59E0B
+Help Moving,Assistance with moving items,move,moving,90,1,#A855F7
+Heavy Lifting,Moving heavy furniture and appliances,fitness_center,moving,100,2,#14B8A6
+Packing Services,Help packing belongings for move,inventory,moving,70,3,#F59E0B
+Storage Help,Help organizing storage units,warehouse,moving,75,4,#A855F7
+General Repairs,Minor home repairs and fixes,build,handyman,85,1,#14B8A6
+Drywall Repair,Patch and repair drywall,dashboard,handyman,90,2,#F59E0B
+Door Repairs,Fix or replace doors and locks,door_sliding,handyman,80,3,#A855F7
+Window Repairs,Window repair and maintenance,window,handyman,85,4,#14B8A6
+Caulking,Bathroom and kitchen caulking,opacity,handyman,60,5,#F59E0B
+TV Mounting,Mount TVs on walls,tv,mounting,75,1,#F59E0B
+Mirror Mounting,Install mirrors and heavy artwork,panorama,mounting,70,2,#A855F7
+Curtain Installation,Install curtain rods and blinds,blinds,mounting,65,3,#14B8A6
+Smart Home Installation,Install smart home devices,smart_home,mounting,90,4,#F59E0B
+Pickup & Delivery,Pickup and deliver items,local_shipping,delivery,60,1,#A855F7
+Grocery Shopping,Shop for groceries and deliver,shopping_cart,delivery,55,2,#14B8A6
+Store Pickup,Pick up orders from stores,store,delivery,50,3,#F59E0B
+Donation Dropoff,Deliver items to donation centers,volunteer_activism,delivery,45,4,#A855F7
+Lawn Mowing,Regular lawn mowing service,grass,yard-work,60,1,#14B8A6
+Gardening,Plant care and garden maintenance,local_florist,yard-work,70,2,#F59E0B
+Leaf Removal,Seasonal leaf cleanup,eco,yard-work,55,3,#A855F7
+Snow Removal,Snow shoveling and removal,ac_unit,yard-work,80,4,#14B8A6
+Hedge Trimming,Trim hedges and bushes,content_cut,yard-work,65,5,#F59E0B
+Interior Painting,Paint interior walls and ceilings,format_paint,painting,100,1,#F59E0B
+Exterior Painting,Paint house exterior,house,painting,120,2,#A855F7
+Cabinet Painting,Refinish and paint cabinets,kitchen,painting,110,3,#14B8A6
+Touch-up Painting,Small paint touch-ups and fixes,brush,painting,70,4,#F59E0B
+Light Installation,Install light fixtures,light,electrical,100,1,#A855F7
+Outlet Installation,Install or replace outlets,power,electrical,110,2,#14B8A6
+Ceiling Fan Installation,Install ceiling fans,air,electrical,120,3,#F59E0B
+Switch Replacement,Replace light switches,toggle_on,electrical,90,4,#A855F7
+Faucet Installation,Install or replace faucets,water_drop,plumbing,100,1,#14B8A6
+Toilet Repair,Fix or replace toilets,wc,plumbing,110,2,#F59E0B
+Drain Cleaning,Clear clogged drains,plumbing,plumbing,90,3,#A855F7
+Water Heater,Water heater maintenance,hot_tub,plumbing,130,4,#14B8A6
+Errand Running,Run various errands,directions_run,personal-assistant,60,1,#F59E0B
+Waiting Services,Wait for deliveries or services,schedule,personal-assistant,50,2,#A855F7
+Organization,Help organizing spaces,folder,personal-assistant,70,3,#14B8A6
+Pet Care,Pet sitting and dog walking,pets,personal-assistant,55,4,#F59E0B
+Event Setup,Set up for parties and events,event,event-help,80,1,#A855F7
+Event Cleanup,Clean up after events,cleaning_services,event-help,75,2,#14B8A6
+Serving Help,Help serving at events,room_service,event-help,70,3,#F59E0B
+Bartending,Bartending services,local_bar,event-help,90,4,#A855F7

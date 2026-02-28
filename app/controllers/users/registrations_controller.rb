@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.save
     yield resource if block_given?
     if resource.persisted?
-      # JWT token is handled by devise-jwt automatically
+      sign_in(resource)  # Trigger Warden auth flow so devise-jwt generates the JWT token
       respond_with(resource)
     else
       clean_up_passwords resource
