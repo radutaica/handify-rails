@@ -23,6 +23,7 @@ class TaskSerializer
       task_time: @task.task_time,
       is_flexible_timing: @task.is_flexible_timing,
       requirements: @task.requirements,
+      images: @task.images || [],
       category: serialize_category,
       address: serialize_address,
       customer: serialize_customer,

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # Include default devise modules.
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
+         :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist,
+         :omniauthable, omniauth_providers: [:google_oauth2, :apple]
 
   # Enums
   enum :user_type, { customer: 'customer', tasker: 'tasker', both: 'both' }, prefix: true
@@ -75,6 +75,26 @@ class User < ApplicationRecord
   scope :taskers, -> { where(user_type: ['tasker', 'both']) }
   scope :verified, -> { where(id_verified: true) }
   scope :active_users, -> { where(status: 'active') }
+
+  def self.from_omniauth(provider:, uid:, email:, first_name:, last_name:, profile_image_url: nil)
+    user = find_by(provider: provider, uid: uid) || find_by(email: email)
+
+    if user
+      user.update(provider: provider, uid: uid) if user.provider.blank?
+      user
+    else
+      create!(
+        provider: provider,
+        uid: uid,
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
+        profile_image_url: profile_image_url,
+        password: Devise.friendly_token[0, 20],
+        user_type: "customer"
+      )
+    end
+  end
 
   private
 

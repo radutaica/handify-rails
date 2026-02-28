@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   # API routes
   namespace :api do
     namespace :v1 do
+      # OAuth
+      post 'auth/oauth', to: 'oauth#create'
+
       # Current user
       resource :me, only: [:show, :update], controller: 'me'
 

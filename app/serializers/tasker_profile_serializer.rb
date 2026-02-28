@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
 class TaskerProfileSerializer
-  def initialize(profile)
+  def initialize(profile, distance_km: nil)
     @profile = profile
+    @distance_km = distance_km
   end
 
   def serializable_hash
     user = @profile.user
 
-    {
+    hash = {
       id: @profile.id,
       user_id: user.id,
       user_name: "#{user.first_name} #{user.last_name}",
@@ -29,6 +30,10 @@ class TaskerProfileSerializer
       created_at: @profile.created_at,
       updated_at: @profile.updated_at
     }
+
+    hash[:distance_km] = @distance_km&.round(1) if @distance_km
+
+    hash
   end
 
   def self.serialize_collection(profiles)

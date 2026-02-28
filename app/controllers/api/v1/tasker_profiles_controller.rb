@@ -11,8 +11,20 @@ module Api
         total = resources.count
         resources = apply_pagination(resources)
 
+        profiles_data = if distance_filter_active?
+          lat = params[:lat].to_f
+          lng = params[:lng].to_f
+          resources.map do |profile|
+            address = profile.user.addresses.default_addresses.first || profile.user.addresses.first
+            distance = address&.distance_to_coordinates(lat, lng)
+            TaskerProfileSerializer.new(profile, distance_km: distance).serializable_hash
+          end
+        else
+          TaskerProfileSerializer.serialize_collection(resources)
+        end
+
         render json: {
-          data: TaskerProfileSerializer.serialize_collection(resources),
+          data: profiles_data,
           meta: {
             total: total,
             page: (params[:page] || 1).to_i,
@@ -71,7 +83,21 @@ module Api
         resources = resources.with_min_rating(params[:min_rating].to_f) if params[:min_rating].present?
         resources = resources.with_hourly_rate_range(params[:min_rate], params[:max_rate]) if params[:min_rate].present? || params[:max_rate].present?
         resources = resources.search(params[:q]) if params[:q].present?
+
+        if distance_filter_active?
+          nearby_user_ids = Address.near_coordinates(
+            params[:lat].to_f,
+            params[:lng].to_f,
+            params[:radius].to_f
+          ).pluck(:user_id)
+          resources = resources.joins(:user).where(users: { id: nearby_user_ids })
+        end
+
         resources
+      end
+
+      def distance_filter_active?
+        params[:lat].present? && params[:lng].present?
       end
 
       def apply_sorting(resources)

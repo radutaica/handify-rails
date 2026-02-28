@@ -1,4 +1,6 @@
 class Address < ApplicationRecord
+  include Geocodable
+
   # Associations
   belongs_to :user
   has_many :tasks, dependent: :restrict_with_error
@@ -17,9 +19,26 @@ class Address < ApplicationRecord
   # Scopes
   scope :default_addresses, -> { where(is_default: true) }
 
+  scope :near_coordinates, ->(lat, lng, radius_km = 10) {
+    where(
+      "( 6371 * acos( LEAST(1.0, cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)) ) ) ) <= ?",
+      lat, lng, lat, radius_km
+    ).where.not(latitude: nil, longitude: nil)
+  }
+
   # Methods
   def full_address
     [street_address, city, county, postal_code, country].compact.join(', ')
+  end
+
+  def distance_to_coordinates(lat, lng)
+    return nil unless latitude.present? && longitude.present?
+
+    rad = Math::PI / 180
+    dlat = (lat.to_f - latitude.to_f) * rad
+    dlng = (lng.to_f - longitude.to_f) * rad
+    a = Math.sin(dlat / 2)**2 + Math.cos(latitude.to_f * rad) * Math.cos(lat.to_f * rad) * Math.sin(dlng / 2)**2
+    6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
   end
 
   private
