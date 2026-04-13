@@ -4,8 +4,9 @@ class User < ApplicationRecord
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist,
-         :omniauthable, omniauth_providers: [:google_oauth2, :apple]
+         :jwt_authenticatable, :omniauthable,
+         jwt_revocation_strategy: JwtDenylist,
+         omniauth_providers: [:google_oauth2, :apple]
 
   # Enums
   enum :user_type, { customer: 'customer', tasker: 'tasker', both: 'both' }, prefix: true

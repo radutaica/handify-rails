@@ -29,7 +29,8 @@ module HandifyRails
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    # Configure null session store for API-only mode to prevent session errors
-    config.session_store :null_store
+    # Add session middleware required by OmniAuth (API-only apps don't include it by default)
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, key: "_handify_session"
   end
 end

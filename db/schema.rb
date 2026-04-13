@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_25_152645) do
+ActiveRecord::Schema[8.0].define(version: 2026_02_28_100001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -403,10 +403,13 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_25_152645) do
     t.boolean "anonymized", default: false
     t.datetime "anonymized_at"
     t.datetime "last_active_at", default: -> { "CURRENT_TIMESTAMP" }
+    t.string "provider"
+    t.string "uid"
     t.index ["data_retention_until"], name: "index_users_on_data_retention_until"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["last_active_at"], name: "index_users_on_last_active_at"
     t.index ["phone"], name: "index_users_on_phone", unique: true
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["status"], name: "index_users_on_status"
   end

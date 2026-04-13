@@ -3,6 +3,8 @@
 module Api
   module V1
     class MeController < BaseController
+      skip_before_action :set_resource
+
       def show
         render json: {
           status: { code: 200, message: 'Current user retrieved successfully.' },
